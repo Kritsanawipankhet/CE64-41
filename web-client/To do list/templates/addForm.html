@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2 align = "center">Register</h2><br />
+
+{% if messages %}
+<div class="alert alert-danger" role="alert">
+    {% for message in messages %}
+    <b>{{message}}<b>
+    {% endfor %}
+</div>
+{% endif %}
+
+<form action ="addForm"  method = "post">
+    {% csrf_token %}
+    <div class ="form-group">
+        <label for="">title</label>
+        <input type="text" class="form-control" name="title"><br />
+    </div>
+
+    <div class ="form-group">
+        <label for="">description</label>
+        <input type="text" class="form-control" name="description"><br />
+    </div>
+
+    <input type="submit" value="Submit" class = "btn btn-primary">
+
+</form>      
+{% endblock content %}
