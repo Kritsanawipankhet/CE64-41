@@ -2,13 +2,17 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract iam {
-    uint256 myInt;
+    string private name;
 
-    function setTheInt(uint256 _myInt) public {
-        myInt = _myInt;
+    constructor(string memory _name) public {
+        name = _name;
     }
 
-    function getTheInt() public view returns (uint256) {
-        return myInt;
+    function getName() public view returns (string memory) {
+        return name;
+    }
+
+    function setName(string memory _name) public {
+        name = _name;
     }
 }
