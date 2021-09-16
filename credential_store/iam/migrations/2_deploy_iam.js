@@ -4,5 +4,5 @@ const iamSetting = {
   name: "Kritsana",
 };
 module.exports = function (deployer) {
-  deployer.deploy(iam, iamSetting.name);
+  deployer.deploy(iam);
 };

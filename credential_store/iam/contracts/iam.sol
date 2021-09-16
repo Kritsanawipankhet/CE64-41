@@ -2,17 +2,21 @@
 pragma solidity >=0.4.22 <0.9.0;
 
 contract iam {
-    string private name;
-
-    constructor(string memory _name) public {
-        name = _name;
+        
+    struct Users{
+        string username;
+        string password;
+    }
+    
+    mapping (address => Users) users;
+    
+    function registerUsers(string memory _username,string memory _password) public {
+        
+        users[msg.sender].username = _username;
+        users[msg.sender].password = _password;
     }
 
-    function getName() public view returns (string memory) {
-        return name;
-    }
-
-    function setName(string memory _name) public {
-        name = _name;
+    function getUsers() public view returns (string memory, string memory) {
+        return (users[msg.sender].username, users[msg.sender].password);
     }
 }
