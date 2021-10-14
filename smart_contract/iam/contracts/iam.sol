@@ -5,30 +5,45 @@ contract iam {
     struct Users {
         string username;
         string password;
+        string name;
+        string email;
+        string phonenumber;
     }
-    struct Services {
-        string services_name;
+
+    mapping(string  => Users) users;
+
+    function createUser(
+        string memory _username,
+        string memory _password,
+        string memory _name,
+        string memory _email,
+        string memory _phonenumber
+    ) public {
+        require(isUser(_username), "Username already !");
+        users[_username].username = _username;
+        users[_username].password = _password;
+        users[_username].name = _name;
+        users[_username].email = _email;
+        users[_username].phonenumber = _phonenumber;
     }
-    mapping(address => Users) public users;
-    mapping(uint256 => Services) services;
 
-    // string private name;
+    function isUser(string memory _username) private view returns (bool) {
+        if (bytes(users[_username].username).length == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    // constructor() public {
-    //     name = "KritsanaWipankhet";
-    //     users[0] = Users("kritsana", "password");
-    //     users[1] = Users("wipankhet", "password");
-    // }
-
-    function registerUsers(string memory _username, string memory _password)
+    function getUser(string memory _username, string memory _password)
         public
+        view
+        returns (Users memory)
     {
-        users[msg.sender].username = _username;
-        users[msg.sender].password = _password;
-        // users[msg.sender].services[0].services_name = "Facebook";
+        
+        require(keccak256(abi.encodePacked(users[_username].username)) == keccak256(abi.encodePacked(_username)) && keccak256(abi.encodePacked(users[_password].password)) == keccak256(abi.encodePacked(_password)), "Username or password is incorrect !");
+        
+        return users[_username];
     }
-
-    function getUsers(address _id) public view returns (Users memory) {
-        return users[_id];
-    }
+    
 }
