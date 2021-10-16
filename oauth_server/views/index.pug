@@ -21,11 +21,10 @@ block content
   if transaction
     p Transaction Detail: 
       p transactionHash: 
-        a(target='_blank',href='https://ropsten.etherscan.io/address/' + transaction.transactionHash) #{transaction.transactionHash}
-      p blockHash: 
-        a(target='_blank',href='https://ropsten.etherscan.io/address/' + transaction.blockHash) #{transaction.blockHash}
+        a(target='_blank',href='https://ropsten.etherscan.io/tx/' + transaction.transactionHash) #{transaction.transactionHash}
+      p blockHash: #{transaction.blockHash}
       p blockNumber: #{transaction.blockNumber}
-      
+
       
 
      
