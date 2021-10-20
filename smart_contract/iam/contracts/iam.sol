@@ -11,7 +11,24 @@ contract iam {
         string gender;
     }
 
+    struct Clients {
+        string client_id;
+        string email;
+        string clinet_secret;
+        string client_name;
+        string client_logo;
+        string client_description;
+        string client_homepage;
+        string redirect_uri;
+    }
+
+    struct Clients_Of_User {
+        string[] client_id;
+    }
+
     mapping(string => Users) users;
+    mapping(string => Clients) clients;
+    mapping(string => Clients_Of_User) clients_of_user;
 
     function createUser(
         string memory _email,
@@ -30,14 +47,6 @@ contract iam {
         users[_email].gender = _gender;
     }
 
-    function isUser(string memory _email) private view returns (bool) {
-        if (bytes(users[_email].email).length == 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     function getUser(string memory _email, string memory _password)
         public
         view
@@ -52,5 +61,80 @@ contract iam {
         );
 
         return users[_email];
+    }
+
+    function isUser(string memory _email) private view returns (bool) {
+        if (bytes(users[_email].email).length == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function createClient(
+        string memory _client_id,
+        string memory _client_name,
+        string memory _email
+    ) public {
+        require(isClient(_client_id), "Client already !");
+        clients[_client_id].client_id = _client_id;
+        clients[_client_id].client_name = _client_name;
+        clients[_client_id].email = _email;
+        clients_of_user[_email].client_id.push(_client_id);
+    }
+
+    function getClient(string memory _client_id)
+        public
+        view
+        returns (Clients memory)
+    {
+        require(!isClient(_client_id), "Client not found !");
+        return clients[_client_id];
+    }
+
+    function getClients_of_User(string memory _email)
+        public
+        view
+        returns (string[] memory)
+    {
+        require(!isClients_of_User(_email), "Clients of user not found !");
+        return clients_of_user[_email].client_id;
+    }
+
+    function delClient(string memory _client_id) public {
+        require(!isClient(_client_id), "Client not found !");
+        string memory email = clients[_client_id].email;
+        for (uint256 i = 0; i < clients_of_user[email].client_id.length; i++) {
+            if (
+                keccak256(
+                    abi.encodePacked(clients_of_user[email].client_id[i])
+                ) == keccak256(abi.encodePacked(_client_id))
+            ) {
+                clients_of_user[email].client_id[i] = clients_of_user[email]
+                    .client_id[clients_of_user[email].client_id.length - 1];
+            }
+        }
+        clients_of_user[email].client_id.pop();
+        delete clients[_client_id];
+    }
+
+    function isClient(string memory _client_id) private view returns (bool) {
+        if (bytes(clients[_client_id].client_id).length == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function isClients_of_User(string memory _email)
+        private
+        view
+        returns (bool)
+    {
+        if (clients_of_user[_email].client_id.length == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

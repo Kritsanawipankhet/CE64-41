@@ -1,0 +1,256 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_client_id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_client_name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_email",
+						"type": "string"
+					}
+				],
+				"name": "createClient",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_password",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_firstname",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_surname",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_birthdate",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_gender",
+						"type": "string"
+					}
+				],
+				"name": "createUser",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_client_id",
+						"type": "string"
+					}
+				],
+				"name": "delClient",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_client_id",
+						"type": "string"
+					}
+				],
+				"name": "getClient",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "client_id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "email",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "clinet_secret",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_logo",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_description",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_homepage",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "redirect_uri",
+								"type": "string"
+							}
+						],
+						"internalType": "struct iam.Clients",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_email",
+						"type": "string"
+					}
+				],
+				"name": "getClients_of_User",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "",
+						"type": "string[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_password",
+						"type": "string"
+					}
+				],
+				"name": "getUser",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "email",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "password",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "firstname",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "surname",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "birthdate",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "gender",
+								"type": "string"
+							}
+						],
+						"internalType": "struct iam.Users",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/iam.sol": "iam"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/iam.sol": {
+			"keccak256": "0x3f37fcefee0e90533f95bc90d0d6aba4d0296b98cd313facd52ea89c4b36137b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://14e8ee3bedfaf792888c4604386d27e1c286f8d8d1fdfe2edcb24a1cefc89416",
+				"dweb:/ipfs/Qmf2KGbsp8wWvZFVrcEPLe1DS1oFH7etFEtisibkNFAW1Z"
+			]
+		}
+	},
+	"version": 1
+}
