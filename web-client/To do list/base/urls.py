@@ -14,4 +14,5 @@ urlpatterns = [
     path('task-update/<int:pk>/', TaskUpdate.as_view(), name = 'task-update'),
     path('share-update/<int:pk>/', ShareUpdate.as_view(), name = 'share-update'),
     path('task-delete/<int:pk>/', DeleteView.as_view(), name = 'task-delete'),
+    path('accounts/',include('allauth.urls')),
 ]
