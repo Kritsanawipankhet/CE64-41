@@ -3,6 +3,8 @@ const Web3 = require("web3");
 const Contract = require("web3-eth-contract");
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 var iamJson = require("../iam.json");
+const { encrypt, decrypt, generateIV } = require("../lib/crpyto");
+const { stringFirstUppercase } = require("../lib/stringlib");
 
 const privateKey =
   "fun ignore vibrant artwork cushion must cat monitor crouch enact illegal economy";
@@ -14,7 +16,7 @@ const provider = new HDWalletProvider(
 var web3 = new Web3(provider);
 Contract.setProvider(provider); // Need to assign
 
-const contractAddress = "0x327c1c6088f5204124577415418BB2878C77cc7a";
+const contractAddress = "0xad9fF19B4A584DB2Af1bF2eD6E6fdBE770B415FD";
 
 var contract = new Contract(iamJson.abi, contractAddress);
 
@@ -23,58 +25,99 @@ var account = "0x7002aFf9b93bf19A9EE547254d185aaAE1D26642"; // get from Metamask
 var router = express.Router();
 
 /* GET home page. */
-router.get("/", callData, function (req, res, next) {
+router.get("/", function (req, res, next) {
   res.render("index", {
     title: "IAM Blockchain",
     contract: contractAddress,
-    data: req.data,
   });
 });
 
-router.post("/", function (req, res, next) {
+router.post("/signup", function (req, res, next) {
   console.log(req.body);
-  const { username, password } = req.body;
+  const { email, password, firstname, surname, birthdate, gender } = req.body;
+  const passwordEncrypted = encrypt(password);
+  const firstnameEncrypted = encrypt(stringFirstUppercase(firstname));
+  const surnameEncrypted = encrypt(stringFirstUppercase(surname));
+  const birthdateEncrypted = encrypt(birthdate);
+  const genderEncrypted = encrypt(gender);
+
   contract.methods
-    .registerUsers(username, password)
+    .createUser(
+      email.toLowerCase(),
+      passwordEncrypted,
+      firstnameEncrypted,
+      surnameEncrypted,
+      birthdateEncrypted,
+      genderEncrypted
+    )
     .send({
       from: account,
     })
     .on("transactionHash", function (hash) {
-      console.log(hash);
+      console.log("Hash", hash);
     })
     .on("confirmation", function (confirmationNumber, receipt) {})
     .on("receipt", function (receipt) {
-      console.log(receipt);
+      console.log("Receipt", receipt);
     })
     .on("error", function (error, receipt) {
-      console.log(error, receipt);
-      // If the transaction was rejected by the network with a receipt, the second parameter will be the receipt.
+      console.log("ERROR MESSAGE : ", error, receipt);
+      res.render("index", {
+        title: "IAM Blockchain",
+        contract: contractAddress,
+        error: error.message,
+      });
     })
     .then((receipt) => {
       var transaction = receipt;
-      contract.methods
-        .getUsers(account)
-        .call({ from: account }, function (error, result) {})
-        .then((result) => {
-          var data = result;
-          res.render("index", {
-            title: "IAM Blockchain",
-            contract: contractAddress,
-            data: data,
-            transaction: transaction,
-          });
-        });
+      res.render("index", {
+        title: "IAM Blockchain",
+        contract: contractAddress,
+        transaction: transaction,
+      });
     });
 });
 
-function callData(req, res, next) {
+router.post("/signin", function (req, res, next) {
+  console.log(req.body);
+  const { email, password } = req.body;
+  const passwordEncrypted = encrypt(password);
+
   contract.methods
-    .getUsers(account)
+    .getUser(email, passwordEncrypted)
     .call({ from: account }, function (error, result) {})
     .then((result) => {
-      req.data = result;
-      next();
+      console.log(result);
+      res.render("index", {
+        title: "IAM Blockchain",
+        contract: contractAddress,
+        data: JSON.stringify({
+          email: result.email,
+          firstname: decrypt(result.firstname),
+          surname: decrypt(result.surname),
+          birthdate: decrypt(result.birthdate),
+          gender: decrypt(result.gender),
+        }),
+      });
+    })
+    .catch((error) => {
+      console.log(error.message);
+      res.render("index", {
+        title: "IAM Blockchain",
+        contract: contractAddress,
+        error: error.message,
+      });
     });
-}
+});
+
+// function callData(req, res, next) {
+//   contract.methods
+//     .getUser(account)
+//     .call({ from: account }, function (error, result) {})
+//     .then((result) => {
+//       req.data = result;
+//       next();
+//     });
+// }
 
 module.exports = router;
