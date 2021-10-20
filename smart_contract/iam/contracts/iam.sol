@@ -3,47 +3,54 @@ pragma solidity >=0.8.0 <0.9.0;
 
 contract iam {
     struct Users {
-        string username;
-        string password;
-        string name;
         string email;
-        string phonenumber;
+        string password;
+        string firstname;
+        string surname;
+        string birthdate;
+        string gender;
     }
 
-    mapping(string  => Users) users;
+    mapping(string => Users) users;
 
     function createUser(
-        string memory _username,
-        string memory _password,
-        string memory _name,
         string memory _email,
-        string memory _phonenumber
+        string memory _password,
+        string memory _firstname,
+        string memory _surname,
+        string memory _birthdate,
+        string memory _gender
     ) public {
-        require(isUser(_username), "Username already !");
-        users[_username].username = _username;
-        users[_username].password = _password;
-        users[_username].name = _name;
-        users[_username].email = _email;
-        users[_username].phonenumber = _phonenumber;
+        require(isUser(_email), "Email already !");
+        users[_email].email = _email;
+        users[_email].password = _password;
+        users[_email].firstname = _firstname;
+        users[_email].surname = _surname;
+        users[_email].birthdate = _birthdate;
+        users[_email].gender = _gender;
     }
 
-    function isUser(string memory _username) private view returns (bool) {
-        if (bytes(users[_username].username).length == 0) {
+    function isUser(string memory _email) private view returns (bool) {
+        if (bytes(users[_email].email).length == 0) {
             return true;
         } else {
             return false;
         }
     }
 
-    function getUser(string memory _username, string memory _password)
+    function getUser(string memory _email, string memory _password)
         public
         view
         returns (Users memory)
     {
-        
-        require(keccak256(abi.encodePacked(users[_username].username)) == keccak256(abi.encodePacked(_username)) && keccak256(abi.encodePacked(users[_password].password)) == keccak256(abi.encodePacked(_password)), "Username or password is incorrect !");
-        
-        return users[_username];
+        require(
+            keccak256(abi.encodePacked(users[_email].email)) ==
+                keccak256(abi.encodePacked(_email)) &&
+                keccak256(abi.encodePacked(users[_email].password)) ==
+                keccak256(abi.encodePacked(_password)),
+            "Email or password is incorrect !"
+        );
+
+        return users[_email];
     }
-    
 }
