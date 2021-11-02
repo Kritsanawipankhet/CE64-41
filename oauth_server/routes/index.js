@@ -56,7 +56,9 @@ router.post("/signup", function (req, res, next) {
     .on("transactionHash", function (hash) {
       console.log("Hash", hash);
     })
-    .on("confirmation", function (confirmationNumber, receipt) {})
+    .on("confirmation", function (confirmationNumber, receipt) {
+      console.log("confirmation", receipt);
+    })
     .on("receipt", function (receipt) {
       console.log("Receipt", receipt);
     })
@@ -65,16 +67,19 @@ router.post("/signup", function (req, res, next) {
       res.render("index", {
         title: "IAM Blockchain",
         contract: contractAddress,
-        error: error.message,
+        error: error,
       });
     })
     .then((receipt) => {
+      console.log("Success ",receipt);
       var transaction = receipt;
       res.render("index", {
         title: "IAM Blockchain",
         contract: contractAddress,
         transaction: transaction,
       });
+    }).catch((error) =>{
+      console.log(error);
     });
 });
 

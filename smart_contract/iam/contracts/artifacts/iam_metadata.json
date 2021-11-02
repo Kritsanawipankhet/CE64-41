@@ -14,12 +14,42 @@
 					},
 					{
 						"internalType": "string",
+						"name": "_email",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
 						"name": "_client_name",
 						"type": "string"
 					},
 					{
 						"internalType": "string",
-						"name": "_email",
+						"name": "_client_public_key",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_client_secret_key",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_client_logo",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_client_description",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_client_homepage",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_redirect_uri",
 						"type": "string"
 					}
 				],
@@ -38,6 +68,11 @@
 					{
 						"internalType": "string",
 						"name": "_password",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_confirm_password",
 						"type": "string"
 					},
 					{
@@ -103,7 +138,78 @@
 							},
 							{
 								"internalType": "string",
-								"name": "clinet_secret",
+								"name": "client_public_key",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_secret_key",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_name",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_logo",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_description",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_homepage",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "redirect_uri",
+								"type": "string"
+							}
+						],
+						"internalType": "struct iam.Clients",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_client_public_key",
+						"type": "string"
+					}
+				],
+				"name": "getClientByPublicKey",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "client_id",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "email",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_public_key",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "client_secret_key",
 								"type": "string"
 							},
 							{
@@ -244,11 +350,11 @@
 	},
 	"sources": {
 		"contracts/iam.sol": {
-			"keccak256": "0x3f37fcefee0e90533f95bc90d0d6aba4d0296b98cd313facd52ea89c4b36137b",
+			"keccak256": "0x1b9e4840190dcd0e3da62ecf1d12ad79fdcb5ada1229a4fc5f5dc55577584598",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://14e8ee3bedfaf792888c4604386d27e1c286f8d8d1fdfe2edcb24a1cefc89416",
-				"dweb:/ipfs/Qmf2KGbsp8wWvZFVrcEPLe1DS1oFH7etFEtisibkNFAW1Z"
+				"bzz-raw://be94ae6de837960bd39062ecae519ef346e22b234879d604a8e6878b40c12891",
+				"dweb:/ipfs/Qmapfrq8re5A5YFHMJ1GFNoo8AEKHBW5f1SQPdqnYQhnze"
 			]
 		}
 	},
