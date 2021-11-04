@@ -8,6 +8,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from .forms import SignUpForm
 
 # Imports for Reordering Feature
 from django.views import View
@@ -29,7 +30,7 @@ class CustomLoginView(LoginView):
 
 class RegisterPage(FormView):
     template_name = 'base/register.html'
-    form_class = UserCreationForm
+    form_class = SignUpForm
     redirect_authenticated_user = True
     success_url = reverse_lazy('tasks')
 
