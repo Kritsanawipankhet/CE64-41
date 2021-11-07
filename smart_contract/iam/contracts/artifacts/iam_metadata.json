@@ -14,17 +14,7 @@
 					},
 					{
 						"internalType": "string",
-						"name": "_email",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
 						"name": "_client_name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_client_public_key",
 						"type": "string"
 					},
 					{
@@ -51,6 +41,11 @@
 						"internalType": "string",
 						"name": "_redirect_uri",
 						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_email",
+						"type": "string"
 					}
 				],
 				"name": "createClient",
@@ -68,11 +63,6 @@
 					{
 						"internalType": "string",
 						"name": "_password",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_confirm_password",
 						"type": "string"
 					},
 					{
@@ -122,23 +112,13 @@
 						"type": "string"
 					}
 				],
-				"name": "getClient",
+				"name": "getClientById",
 				"outputs": [
 					{
 						"components": [
 							{
 								"internalType": "string",
-								"name": "client_id",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "email",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "client_public_key",
+								"name": "id",
 								"type": "string"
 							},
 							{
@@ -170,72 +150,16 @@
 								"internalType": "string",
 								"name": "redirect_uri",
 								"type": "string"
-							}
-						],
-						"internalType": "struct iam.Clients",
-						"name": "",
-						"type": "tuple"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "_client_public_key",
-						"type": "string"
-					}
-				],
-				"name": "getClientByPublicKey",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "client_id",
-								"type": "string"
 							},
 							{
 								"internalType": "string",
-								"name": "email",
+								"name": "client_owner",
 								"type": "string"
 							},
 							{
-								"internalType": "string",
-								"name": "client_public_key",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "client_secret_key",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "client_name",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "client_logo",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "client_description",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "client_homepage",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "redirect_uri",
-								"type": "string"
+								"internalType": "uint256",
+								"name": "timestamp",
+								"type": "uint256"
 							}
 						],
 						"internalType": "struct iam.Clients",
@@ -254,12 +178,25 @@
 						"type": "string"
 					}
 				],
-				"name": "getClients_of_User",
+				"name": "getClientsOfUser",
 				"outputs": [
 					{
 						"internalType": "string[]",
 						"name": "",
 						"type": "string[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTimestamp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -279,43 +216,29 @@
 					}
 				],
 				"name": "getUser",
+				"outputs": [],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_clinet_id",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "_email",
+						"type": "string"
+					}
+				],
+				"name": "grantAuthorization",
 				"outputs": [
 					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "email",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "password",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "firstname",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "surname",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "birthdate",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "gender",
-								"type": "string"
-							}
-						],
-						"internalType": "struct iam.Users",
+						"internalType": "string",
 						"name": "",
-						"type": "tuple"
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -350,11 +273,11 @@
 	},
 	"sources": {
 		"contracts/iam.sol": {
-			"keccak256": "0x1b9e4840190dcd0e3da62ecf1d12ad79fdcb5ada1229a4fc5f5dc55577584598",
+			"keccak256": "0x4b97d70ef91b4869d300cc8a8d53b7766fbdc784901218190d3d704a6be4749b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://be94ae6de837960bd39062ecae519ef346e22b234879d604a8e6878b40c12891",
-				"dweb:/ipfs/Qmapfrq8re5A5YFHMJ1GFNoo8AEKHBW5f1SQPdqnYQhnze"
+				"bzz-raw://154bcc63a8deb7fdb66268032c4e0af8e2e7ff8c81ec85b32eb9c7d09d1ec34f",
+				"dweb:/ipfs/QmPnV9D4A1cAvKsdEZ2YdGwjWHYCsQ6HpNLzvQF8vMG9M6"
 			]
 		}
 	},

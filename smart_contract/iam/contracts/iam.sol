@@ -3,77 +3,87 @@ pragma solidity >=0.8.0 <0.9.0;
 
 contract iam {
     address owner_address = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
-    
-    modifier owner {
-        require(msg.sender == owner_address,"No Authorization !");
+
+    modifier owner() {
+        require(msg.sender == owner_address, "No Authorization !");
         _;
     }
-    
+
     struct Users {
-        string email;
+        string email; // hash sha256
         string password;
         string firstname;
         string surname;
         string birthdate;
         string gender;
+        uint256 timestamp;
     }
 
     struct Clients {
-        string client_id;
-        string email;
-        string client_public_key;
+        string id; // is client_id
         string client_secret_key;
         string client_name;
         string client_logo;
         string client_description;
         string client_homepage;
         string redirect_uri;
+        string client_owner; // email
+        uint256 timestamp;
     }
 
-    struct Clients_Of_User {
-        string[] client_id;
+    struct ClientsOfUser {
+        string[] client_id; // 1 user to manny clients
     }
-    
-    struct ClientsId_Of_ClientsPublicKey {
+
+    struct Authorizations {
+        string id; // Key Id use client_id.email."auth" hash sha256 algorithm
+        string authorization_code;
+        uint256 expires_at;
         string client_id;
+        string email;
+        uint256 timestamp;
     }
-    
+
+    struct Token {
+        string id; // Key Id use client_id.email."token" hash sha256 algorithm
+        string access_token;
+        string expires_at;
+        string client_id;
+        string email;
+        uint256 timestamp;
+    }
+
     mapping(string => Users) users;
     mapping(string => Clients) clients;
-    mapping(string => Clients_Of_User) clients_of_user;
-    mapping(string => ClientsId_Of_ClientsPublicKey) clients_id_of_clients_public_key;
-    
+    mapping(string => ClientsOfUser) clients_of_user;
+    mapping(string => Authorizations) authorization;
+    mapping(string => Token) token;
+
+    function getTimestamp() public view returns (uint256) {
+        return block.timestamp;
+    }
+
     function createUser(
         string memory _email,
         string memory _password,
-        string memory _confirm_password,
         string memory _firstname,
         string memory _surname,
         string memory _birthdate,
         string memory _gender
     ) public owner {
-        require(isUser(_email), "Email already !");
-        require(bytes(_email).length != 0,"Email is empty !");
-        require(bytes(_password).length != 0,"Password is empty !");
-        require(bytes(_confirm_password).length != 0,"Confirm Password is empty !");
-        require(bytes(_firstname).length != 0,"Firstname is empty !");
-        require(bytes(_surname).length != 0,"Surname is empty !");
-        require(bytes(_birthdate).length != 0,"Birthdate is empty !");
-        require(bytes(_gender).length != 0,"Gender is empty !");
-        require(keccak256(abi.encodePacked(_password)) == keccak256(abi.encodePacked(_confirm_password)),"Password do not match !");
+        require(isUser(_email), "Email is already !");
         users[_email].email = _email;
         users[_email].password = _password;
         users[_email].firstname = _firstname;
         users[_email].surname = _surname;
         users[_email].birthdate = _birthdate;
         users[_email].gender = _gender;
+        users[_email].timestamp = block.timestamp;
     }
 
     function getUser(string memory _email, string memory _password)
         public
-        owner
         view
-        returns (Users memory)
     {
         require(
             keccak256(abi.encodePacked(users[_email].email)) ==
@@ -82,8 +92,6 @@ contract iam {
                 keccak256(abi.encodePacked(_password)),
             "Email or password is incorrect !"
         );
-
-        return users[_email];
     }
 
     function isUser(string memory _email) private view returns (bool) {
@@ -96,33 +104,31 @@ contract iam {
 
     function createClient(
         string memory _client_id,
-        string memory _email,
         string memory _client_name,
-        string memory _client_public_key,
         string memory _client_secret_key,
         string memory _client_logo,
         string memory _client_description,
         string memory _client_homepage,
-        string memory _redirect_uri
+        string memory _redirect_uri,
+        string memory _email
     ) public owner {
-        require(!isUser(_email),"User not found !");
+        require(!isUser(_email), "User not found !");
         require(isClient(_client_id), "Client already !");
-        clients[_client_id].client_id = _client_id;
-        clients[_client_id].email = _email;
+        clients[_client_id].id = _client_id;
+        clients[_client_id].client_owner = _email;
         clients[_client_id].client_name = _client_name;
-        clients[_client_id].client_public_key = _client_public_key;
         clients[_client_id].client_secret_key = _client_secret_key;
         clients[_client_id].client_logo = _client_logo;
         clients[_client_id].client_description = _client_description;
         clients[_client_id].client_homepage = _client_homepage;
         clients[_client_id].redirect_uri = _redirect_uri;
-        
+        clients[_client_id].timestamp = block.timestamp;
+
         clients_of_user[_email].client_id.push(_client_id); //Add List Client of User
-        clients_id_of_clients_public_key[_client_public_key].client_id = _client_id; // Link ClientId with Client public key
     }
 
-    function getClient(string memory _client_id)
-        public
+    function getClientById(string memory _client_id)
+        public owner
         view
         returns (Clients memory)
     {
@@ -130,24 +136,18 @@ contract iam {
         return clients[_client_id];
     }
 
-    function getClients_of_User(string memory _email)
-        public
+    function getClientsOfUser(string memory _email)
+        public owner
         view
         returns (string[] memory)
     {
-        require(!isClients_of_User(_email), "Clients of user not found !");
+        require(!isClientsOfUser(_email), "Clients of user not found !");
         return clients_of_user[_email].client_id;
     }
-    
-    function getClientByPublicKey(string memory _client_public_key) public view returns (Clients memory){
-        string memory id = clients_id_of_clients_public_key[_client_public_key].client_id;
-        require(bytes(clients[id].client_id).length != 0,"Clients not found !");
-        return clients[id];
-    }
-    
-    function delClient(string memory _client_id) public {
+
+    function delClient(string memory _client_id) public owner {
         require(!isClient(_client_id), "Client not found !");
-        string memory email = clients[_client_id].email;
+        string memory email = clients[_client_id].client_owner;
         for (uint256 i = 0; i < clients_of_user[email].client_id.length; i++) {
             if (
                 keccak256(
@@ -158,27 +158,28 @@ contract iam {
                     .client_id[clients_of_user[email].client_id.length - 1];
             }
         }
-        clients_of_user[email].client_id.pop(); 
-        delete clients[_client_id]; // del Client 
+        clients_of_user[email].client_id.pop();
+        delete clients[_client_id]; // del Client
     }
 
     function isClient(string memory _client_id) private view returns (bool) {
-        if (bytes(clients[_client_id].client_id).length == 0) {
+        if (bytes(clients[_client_id].id).length == 0) {
             return true;
         } else {
             return false;
         }
     }
 
-    function isClients_of_User(string memory _email)
-        private
-        view
-        returns (bool)
-    {
+    function isClientsOfUser(string memory _email) private view returns (bool) {
         if (clients_of_user[_email].client_id.length == 0) {
             return true;
         } else {
             return false;
         }
+    }
+    
+    
+    function grantAuthorization(string memory _clinet_id,string memory _email) public view returns (string memory){
+        
     }
 }

@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/9c79405a-2bd2-4a5e-a29f-6cb5098608ad/resourceGroups/OAuth/providers/Microsoft.Web/sites/iamblockchain",
-    "appService.deploySubpath": "oauth_server"
-}
