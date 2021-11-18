@@ -1,0 +1,27 @@
+@startuml
+Actor User
+User -> LoginView : Enter username and password
+activate LoginView
+LoginView -> AuthenticationBackend : validation username and password
+activate AuthenticationBackend
+AuthenticationBackend -> Database : check username
+activate Database
+alt if username exist
+Database --> AuthenticationBackend : username is exist
+else username not exist
+Database --> AuthenticationBackend : username is non exist
+AuthenticationBackend --> User : send warning message
+end
+AuthenticationBackend -> Database : check password
+alt if password is valid
+Database --> AuthenticationBackend : send user data
+else password is invalid
+Database --> AuthenticationBackend : password is invalid
+AuthenticationBackend --> User : send warning message
+end
+deactivate Database
+AuthenticationBackend --> LoginView : User login accepted
+deactivate AuthenticationBackend
+LoginView --> User : Login success
+deactivate LoginView
+@enduml
