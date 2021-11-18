@@ -1,0 +1,10 @@
+@startuml
+Actor User
+User -> TaskList : Enter search information
+activate TaskList
+TaskList -> TaskList: find tasks
+activate TaskList
+deactivate TaskList
+TaskList --> User: display tasks
+deactivate TaskList
+@enduml
