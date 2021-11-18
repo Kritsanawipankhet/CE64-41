@@ -1,0 +1,10 @@
+@startuml
+Actor User
+User -> LogoutView : Click Logout
+activate LogoutView
+LogoutView -> LoginView:redirect()
+deactivate LogoutView
+activate LoginView
+LoginView --> User : Display()
+deactivate LoginView
+@enduml
