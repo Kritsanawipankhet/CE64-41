@@ -1,0 +1,15 @@
+@startuml
+Actor User
+User -> TaskList : Click Task's title
+activate TaskList
+TaskList -> TaskUpdate : open TaskUpdate's view
+activate TaskUpdate
+User -> TaskUpdate : rename task
+TaskUpdate -> Database : save the change
+activate Database
+Database --> TaskList : redirect
+deactivate Database
+deactivate TaskUpdate
+TaskList --> User : display
+deactivate TaskList
+@enduml
