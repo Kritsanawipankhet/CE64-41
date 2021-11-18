@@ -1,0 +1,12 @@
+@startuml
+Actor User
+User -> DeleteView : request delete task
+activate DeleteView
+DeleteView -> User : send confirmation message
+User -> DeleteView : confirm
+DeleteView -> Database : delete task
+activate Database
+Database --> User : Display()
+deactivate Database
+deactivate DeleteView
+@enduml
