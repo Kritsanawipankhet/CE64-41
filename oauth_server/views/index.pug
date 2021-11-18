@@ -1,66 +1,63 @@
 extends layout
 
 block content
+  header(class="p-3 mb-3 border-bottom fixed-top")
+    div(class="container")
+      div(class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start")
 
-  h1= title
-  p Welcome to #{title}
-  p Contract Address :  
-    a(target='_blank',href='https://ropsten.etherscan.io/address/' + contract) #{contract}
-  p Data:  #{data}
+
+        ul(class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0")
+          li
+            a(href="#" ,class="nav-link px-2 link-secondary ") Overview 
+          li
+            a(href="#" ,class="nav-link px-2 link-dark") Inventory
+          li
+            a(href="#" ,class="nav-link px-2 link-dark") Customers
+          li
+            a(href="#" ,class="nav-link px-2 link-dark") Products
+            
+  div(class="b-example-divider")
+
+  div(class="col-lg-8 mx-auto")
+    main(class="h-60")
+      h1 Get started with Ethereum
+      p(class="fs-5 col-md-8") Quickly and easily get started with Bootstrap's compiled, production-ready files with this barebones example featuring some basic HTML and helpful links. Download all our examples to get started.
+      
+      div(class="mb-5")
+        a(href="#",class="btn btn-primary btn-lg px-4") Download examples
+
+      hr(class="col-3 col-md-2 mb-5")
+
+      div(class="row g-5")
+        div(class="col-md-6")
+          h2 Starter projects
+          p Ready to beyond the starter template? Check out these open source projects that you can quickly duplicate to a new GitHub repository.</p>
+          ul(class="icon-list")
+            li
+              a(href="https://github.com/twbs/bootstrap-npm-starter",rel="noopener",target="_blank") Bootstrap npm starter
+            li(class="text-muted") Bootstrap Parcel starter (coming soon!)
+
+        div(class="col-md-6")
+          h2 Guides
+          p Read more detailed instructions and documentation on using or contributing to Bootstrap.
+          ul(class="icon-list")
+            li 
+              a(href="../getting-started/introduction/") Bootstrap quick start guide 
+            li
+              a(href="../getting-started/webpack/") Bootstrap Webpack guide
+            li
+              a(href="../getting-started/parcel/") Bootstrap Parcel guide 
+            li
+              a(href="../getting-started/contribute/") Contributing to Bootstrap
+
+  div(class="container")
+    footer(class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top")
+      div(class="col-md-4 d-flex align-items-center")
+        a(href="/",class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1")
+          svg(class="bi",width="30",height="24")
+            use(xlink:href="#bootstrap")
+          span(class="text-muted") &copy; 2021 Company, Inc
+          
+  script(src="/bootstrap/dist/js/bootstrap.bundle.min.js")
   
-  if data
-    // p #{data["username"]},#{data["password"],#{data["name"]},#{data["email"]},#{data["phonenumber"]}
-    
-  .form-container 
-    form(class="form-signup",method="post",action="/signup")
-      h2 SignUp To IAM
-
-      div(class="form-group mb-3") 
-        label(for="email",class="form-label") Email
-        input(type="email",name="email",id="email",class="form-control",placeholder="Email",autocomplete="off",required)
-      div(class="form-group mb-3") 
-        label(for="password",class="form-label") Password 
-        input(type="password",name="password",id="password",class="form-control",placeholder="Password",autocomplete="off",required)
-      div(class="form-group mb-3") 
-        label(for="firstname",class="form-label") Firstname 
-        input(type="text",name="firstname",id="firstname",class="form-control",placeholder="First Name",autocomplete="off",required)
-      div(class="form-group mb-3") 
-        label(for="surname",class="form-label") Surname 
-        input(type="text",name="surname",id="surname",class="form-control",placeholder="Surname",autocomplete="off",required)
-      div(class="form-group mb-3") 
-        label(for="birthdate",class="form-label") Birthdate 
-        input(type="date",name="birthdate",id="birthdate",class="form-control",placeholder="Birth Date",autocomplete="off",required)
-      div(class="form-group mb-3")
-        label(for="gender",class="form-label") Gender
-          div(class="from-check")
-            input(class="form-check-input" type="radio" name="gender" id="gender" value="Male",checked)
-            label(class="form-check-label" for="gender")  Male
-          div(class="from-check")
-            input(class="form-check-input" type="radio" name="gender" id="gender" value="Female")
-            label(class="form-check-label" for="gender")  Female
-
-      div(class="form-group mb-3") 
-        button(type="submit",class="btn btn-primary") SignUp
-
-
-  if transaction
-    p Transaction Detail: 
-      p transactionHash: 
-        a(target='_blank',href='https://ropsten.etherscan.io/tx/' + transaction.transactionHash) #{transaction.transactionHash}
-      p blockHash: #{transaction.blockHash}
-      p blockNumber: #{transaction.blockNumber}
-  if error
-    p Error Message #{error}
-  .form-container 
-    form(class="form-signup",method="post",action="/signin")
-      h2 SignIn To IAM
-
-      div(class="form-group mb-3") 
-        label(for="email",class="form-label") Email 
-        input(type="email",name="email",id="email",class="form-control",placeholder="Email",autocomplete="off",required)
-      div(class="form-group mb-3") 
-        label(for="password",class="form-label") Password 
-        input(type="password",name="password",id="password",class="form-control",placeholder="Password",autocomplete="off",required)
-      div(class="form-group mb-3") 
-        button(type="submit",class="btn btn-primary") SignIn
 

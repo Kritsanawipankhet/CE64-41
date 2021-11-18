@@ -1,0 +1,66 @@
+extends layout
+
+block content
+
+  h1= title
+  p Welcome to #{title}
+  p Contract Address :  
+    a(target='_blank',href='https://ropsten.etherscan.io/address/' + contract) #{contract}
+  p Data:  #{data}
+  
+  if data
+    // p #{data["username"]},#{data["password"],#{data["name"]},#{data["email"]},#{data["phonenumber"]}
+    
+  .form-container 
+    form(class="form-signup",method="post",action="/signup")
+      h2 SignUp To IAM
+
+      div(class="form-group mb-3") 
+        label(for="email",class="form-label") Email
+        input(type="email",name="email",id="email",class="form-control",placeholder="Email",autocomplete="off",required)
+      div(class="form-group mb-3") 
+        label(for="password",class="form-label") Password 
+        input(type="password",name="password",id="password",class="form-control",placeholder="Password",autocomplete="off",required)
+      div(class="form-group mb-3") 
+        label(for="firstname",class="form-label") Firstname 
+        input(type="text",name="firstname",id="firstname",class="form-control",placeholder="First Name",autocomplete="off",required)
+      div(class="form-group mb-3") 
+        label(for="surname",class="form-label") Surname 
+        input(type="text",name="surname",id="surname",class="form-control",placeholder="Surname",autocomplete="off",required)
+      div(class="form-group mb-3") 
+        label(for="birthdate",class="form-label") Birthdate 
+        input(type="date",name="birthdate",id="birthdate",class="form-control",placeholder="Birth Date",autocomplete="off",required)
+      div(class="form-group mb-3")
+        label(for="gender",class="form-label") Gender
+          div(class="from-check")
+            input(class="form-check-input" type="radio" name="gender" id="gender" value="Male",checked)
+            label(class="form-check-label" for="gender")  Male
+          div(class="from-check")
+            input(class="form-check-input" type="radio" name="gender" id="gender" value="Female")
+            label(class="form-check-label" for="gender")  Female
+
+      div(class="form-group mb-3") 
+        button(type="submit",class="btn btn-primary") SignUp
+
+
+  if transaction
+    p Transaction Detail: 
+      p transactionHash: 
+        a(target='_blank',href='https://ropsten.etherscan.io/tx/' + transaction.transactionHash) #{transaction.transactionHash}
+      p blockHash: #{transaction.blockHash}
+      p blockNumber: #{transaction.blockNumber}
+  if error
+    p Error Message #{error}
+  .form-container 
+    form(class="form-signup",method="post",action="/signin")
+      h2 SignIn To IAM
+
+      div(class="form-group mb-3") 
+        label(for="email",class="form-label") Email 
+        input(type="email",name="email",id="email",class="form-control",placeholder="Email",autocomplete="off",required)
+      div(class="form-group mb-3") 
+        label(for="password",class="form-label") Password 
+        input(type="password",name="password",id="password",class="form-control",placeholder="Password",autocomplete="off",required)
+      div(class="form-group mb-3") 
+        button(type="submit",class="btn btn-primary") SignIn
+

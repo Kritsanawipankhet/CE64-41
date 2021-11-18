@@ -1,26 +1,11 @@
 var express = require("express");
-const Web3 = require("web3");
-const Contract = require("web3-eth-contract");
-const HDWalletProvider = require("@truffle/hdwallet-provider");
-var iamJson = require("../iam.json");
-const { encrypt, decrypt, generateIV } = require("../lib/crpyto");
+const { encrypt, decrypt } = require("../lib/crpyto");
 const { stringFirstUppercase } = require("../lib/stringlib");
-
-const privateKey =
-  "fun ignore vibrant artwork cushion must cat monitor crouch enact illegal economy";
-
-const provider = new HDWalletProvider(
-  privateKey,
-  "https://ropsten.infura.io/v3/81a30e2706b04f5489a74021a6a5ff42"
-);
-var web3 = new Web3(provider);
-Contract.setProvider(provider); // Need to assign
-
-const contractAddress = "0xad9fF19B4A584DB2Af1bF2eD6E6fdBE770B415FD";
-
-var contract = new Contract(iamJson.abi, contractAddress);
-
-var account = "0x7002aFf9b93bf19A9EE547254d185aaAE1D26642"; // get from Metamask ropsten
+const {
+  smartContract,
+  accountEthereum,
+  contractAddressEthereum,
+} = require("../config/ethereum");
 
 var router = express.Router();
 
@@ -28,7 +13,7 @@ var router = express.Router();
 router.get("/", function (req, res, next) {
   res.render("index", {
     title: "IAM Blockchain",
-    contract: contractAddress,
+    contract: contractAddressEthereum,
   });
 });
 
@@ -41,46 +26,47 @@ router.post("/signup", function (req, res, next) {
   const birthdateEncrypted = encrypt(birthdate);
   const genderEncrypted = encrypt(gender);
 
-  contract.methods
-    .createUser(
-      email.toLowerCase(),
-      passwordEncrypted,
-      firstnameEncrypted,
-      surnameEncrypted,
-      birthdateEncrypted,
-      genderEncrypted
-    )
-    .send({
-      from: account,
-    })
-    .on("transactionHash", function (hash) {
-      console.log("Hash", hash);
-    })
-    .on("confirmation", function (confirmationNumber, receipt) {
-      console.log("confirmation", receipt);
-    })
-    .on("receipt", function (receipt) {
-      console.log("Receipt", receipt);
-    })
-    .on("error", function (error, receipt) {
-      console.log("ERROR MESSAGE : ", error, receipt);
-      res.render("index", {
-        title: "IAM Blockchain",
-        contract: contractAddress,
-        error: error,
-      });
-    })
-    .then((receipt) => {
-      console.log("Success ",receipt);
-      var transaction = receipt;
-      res.render("index", {
-        title: "IAM Blockchain",
-        contract: contractAddress,
-        transaction: transaction,
-      });
-    }).catch((error) =>{
-      console.log(error);
-    });
+  // smartContract.methods
+  //   .createUser(
+  //     email.toLowerCase(),
+  //     passwordEncrypted,
+  //     firstnameEncrypted,
+  //     surnameEncrypted,
+  //     birthdateEncrypted,
+  //     genderEncrypted
+  //   )
+  //   .send({
+  //     from: accountEthereum,
+  //   })
+  //   .on("transactionHash", function (hash) {
+  //     console.log("Hash", hash);
+  //   })
+  //   .on("confirmation", function (confirmationNumber, receipt) {
+  //     console.log("confirmation", receipt);
+  //   })
+  //   .on("receipt", function (receipt) {
+  //     console.log("Receipt", receipt);
+  //   })
+  //   .on("error", function (error, receipt) {
+  //     console.log("ERROR MESSAGE : ", error, receipt);
+  //     res.render("index", {
+  //       title: "IAM Blockchain",
+  //       contract: contractAddressEthereum,
+  //       error: error,
+  //     });
+  //   })
+  //   .then((receipt) => {
+  //     console.log("Success ", receipt);
+  //     var transaction = receipt;
+  //     res.render("index", {
+  //       title: "IAM Blockchain",
+  //       contract: contractAddressEthereum,
+  //       transaction: transaction,
+  //     });
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
 });
 
 router.post("/signin", function (req, res, next) {
@@ -88,31 +74,31 @@ router.post("/signin", function (req, res, next) {
   const { email, password } = req.body;
   const passwordEncrypted = encrypt(password);
 
-  contract.methods
-    .getUser(email, passwordEncrypted)
-    .call({ from: account }, function (error, result) {})
-    .then((result) => {
-      console.log(result);
-      res.render("index", {
-        title: "IAM Blockchain",
-        contract: contractAddress,
-        data: JSON.stringify({
-          email: result.email,
-          firstname: decrypt(result.firstname),
-          surname: decrypt(result.surname),
-          birthdate: decrypt(result.birthdate),
-          gender: decrypt(result.gender),
-        }),
-      });
-    })
-    .catch((error) => {
-      console.log(error.message);
-      res.render("index", {
-        title: "IAM Blockchain",
-        contract: contractAddress,
-        error: error.message,
-      });
-    });
+  // contract.methods
+  //   .getUser(email, passwordEncrypted)
+  //   .call({ from: account }, function (error, result) {})
+  //   .then((result) => {
+  //     console.log(result);
+  //     res.render("index", {
+  //       title: "IAM Blockchain",
+  //       contract: contractAddress,
+  //       data: JSON.stringify({
+  //         email: result.email,
+  //         firstname: decrypt(result.firstname),
+  //         surname: decrypt(result.surname),
+  //         birthdate: decrypt(result.birthdate),
+  //         gender: decrypt(result.gender),
+  //       }),
+  //     });
+  //   })
+  //   .catch((error) => {
+  //     console.log(error.message);
+  //     res.render("index", {
+  //       title: "IAM Blockchain",
+  //       contract: contractAddress,
+  //       error: error.message,
+  //     });
+  //   });
 });
 
 // function callData(req, res, next) {

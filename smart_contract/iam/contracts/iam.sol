@@ -128,8 +128,9 @@ contract iam {
     }
 
     function getClientById(string memory _client_id)
-        public owner
+        public
         view
+        owner
         returns (Clients memory)
     {
         require(!isClient(_client_id), "Client not found !");
@@ -137,8 +138,9 @@ contract iam {
     }
 
     function getClientsOfUser(string memory _email)
-        public owner
+        public
         view
+        owner
         returns (string[] memory)
     {
         require(!isClientsOfUser(_email), "Clients of user not found !");
@@ -177,9 +179,13 @@ contract iam {
             return false;
         }
     }
-    
-    
-    function grantAuthorization(string memory _clinet_id,string memory _email) public view returns (string memory){
+
+    function grantAuthorization(string memory _client_id, string memory _email)
+        public
+        view
+        returns (string memory)
+    {
         
     }
+
 }
