@@ -1,0 +1,10 @@
+@startuml
+Actor User
+User -> TaskCreate : input Title, description and status
+activate TaskCreate
+TaskCreate -> Database : add new Task
+activate Database
+Database --> User : Display()
+deactivate Database
+deactivate TaskCreate
+@enduml
