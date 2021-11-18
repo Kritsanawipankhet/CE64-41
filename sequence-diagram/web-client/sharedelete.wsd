@@ -1,0 +1,12 @@
+@startuml
+Actor User
+User -> ShareDeleteView : request revoke share permission
+activate ShareDeleteView
+ShareDeleteView -> User : send confirmation message
+User -> ShareDeleteView : confirm
+ShareDeleteView -> Database : revoke share permission
+activate Database
+Database --> User : Display()
+deactivate Database
+deactivate ShareDeleteView
+@enduml
