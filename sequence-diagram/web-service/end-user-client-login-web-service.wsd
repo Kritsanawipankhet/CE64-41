@@ -1,0 +1,53 @@
+@startuml
+actor User
+autonumber "<b>(0)"
+"User" -> "Client" ++: Request 
+"Client" -> "Web Service" --++: Redirect to\nhttps://[Authorization Server]/oauth/?\n[client_id,redirect_uri,\nresponse_type,grant_type]
+"Web Service" -> "Authorization Server" --++: Verification client credentials
+note over "Authorization Server": Needs client_id,redirect_uri,\nresponse_type=code
+"Authorization Server" -> "Blockchain" ++: Call Resource client credentials
+"Blockchain" -> "Authorization Server" --: Response client credentials
+alt Invalid client credential
+    autonumber stop
+    "Authorization Server" --> "Web Service" ++: Authentication denied
+    "Web Service" --> "User" --: Redirect to Error Page 
+else valid client credential
+    autonumber resume
+    "Authorization Server" --> "Web Service" --++: Response client credentials
+    "Web Service" --> "User" --++: Response Login Page\nGET /oauth?[client_id,redirect_uri,\nresponse_type,grant_type]
+    "User" -> "Web Service" --++: Enter user credentials\n[email,password]\nPOST /oauth
+    "Web Service" -> "Authorization Server" ++: Request Authorization
+    "Authorization Server" -> "Authorization Server" ++: Encrypt user credentials
+    "Authorization Server" -> "Blockchain" --++: Request user credentials for verification
+    "Blockchain" --> "Authorization Server" --: Response user data validity status
+    alt Invalid user credentials (false)
+        autonumber stop
+        "Authorization Server" --> "Web Service" ++: Authentication denied
+        "Web Service" --> "User" --: Response notification\n"Username or Password Incorrect"
+    else valid user credentials (true)
+        autonumber resume
+        "Authorization Server" -> "Blockchain" ++: Call resource client credential
+        "Blockchain" --> "Authorization Server" --: Response resource client credential
+        "Authorization Server" -> "Authorization Server" ++: Grant and Generate Authorization Code & Encrypt
+        "Authorization Server" -> "Blockchain" --++: Send authorization code credential
+        "Blockchain" --> "Authorization Server" --: Response 
+        "Authorization Server" --> "Web Service" --++: Response Authorization Code
+        "Web Service" -> "Authorization Server" --++: Exchange authorization code for Access Token
+        note over "Authorization Server": Need client_id,client_secret,redirect_uri,\ngrant_type=authorization_code
+        "Authorization Server" -> "Blockchain" ++: Call resource client credential
+        "Blockchain" --> "Authorization Server" --: Response resource client credential
+        "Authorization Server" -> "Authorization Server" ++: Generate Access Token & Encrypt
+        "Authorization Server" -> "Blockchain" --++: Send access token credential
+        "Blockchain" --> "Authorization Server" --: Response 
+        "Authorization Server" --> "Web Service" --++: Response access token credential
+        "Web Service" -> "Authorization Server" --++: Call resource user with Access Token
+        "Authorization Server" -> "Blockchain" ++: Call resource user credential
+        "Blockchain" --> "Authorization Server" --: Response user credential
+        "Authorization Server" --> "Web Service" --: Response user credential & access token credential
+        "Web Service" --> "User" --: Redirect to \nPOST https://[redirect_uri]/callback?\n[token_credential,user_credential]
+    end
+end
+
+
+
+@enduml

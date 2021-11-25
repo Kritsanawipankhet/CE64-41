@@ -1,0 +1,18 @@
+@startuml
+actor User
+autonumber "<b>(0)"
+"User" -> "Web Service" ++: Request Register Page \nGET /register
+"Web Service" --> "User" --++: Reponse Register Page Content\nGET /register
+"User" -> "Web Service" --++: Enter user credentials\n[email,password,firstname,lastname,birthdate,gender]\nPOST /register
+"Web Service" -> "Blockchain" ++:Validate user credentials \nand redundancy of user \n:isUser()
+"Blockchain" --> "Web Service" --: Response redundancy of user
+alt redundancy user (true)
+    autonumber stop
+    "Web Service" --> "User" : Response notificaion "email is already !"
+else User avaliable (false)
+    autonumber resume
+    "Web Service" -> "Blockchain" ++: Send user credentials and encrypt
+    "Blockchain" --> "Web Service" --: Response transaction details
+    "Web Service" --> "User" --: Redirect to Login Page\nGET /auth
+end
+@enduml

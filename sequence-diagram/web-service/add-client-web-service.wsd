@@ -1,0 +1,29 @@
+@startuml
+actor User
+autonumber "<b>(0)"
+"User" -> "Web Service" ++: Request Manage Client Page\nGET /developer
+'"Web Service" -> "Auth Middleware" ++: Authenticate :isAuthorized()
+'"Auth Middleware" --> "Web Service" --: Response Identity verification
+alt Unauthorized
+    autonumber stop
+    "Web Service" --> "User": Redirect to Login Page\nGET /oauth
+else Authorized
+    autonumber resume
+    "Web Service" --> "User" --++: Response Manage Client Page\nGET /developer
+    "User" -> "Web Service" --++: Request Add Client\nPOST /developer/add_client
+    "Web Service" -> "Blockchain" ++: Validate client credential\nand redundancy of client \n:isClient()
+    "Blockchain" --> "Web Service" --: Response redundancy of client credential
+    alt Redundancy client (true)
+        autonumber stop
+        "Web Service" --> "User" : Response notificaion "client is already exists !"
+    else Client avaliable (false)
+        autonumber resume
+        "Web Service" -> "Blockchain" ++: Send client credentials and encrypt
+        "Blockchain" --> "Web Service" --: Response transaction details
+        "Web Service" --> "User" --: Response notificaion "add client successfully !"
+    end
+end
+
+
+
+@enduml
