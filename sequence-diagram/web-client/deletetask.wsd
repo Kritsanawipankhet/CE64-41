@@ -1,12 +1,16 @@
 @startuml
 Actor User
-User -> DeleteView : request delete task
+User -> TaskList : click cross mark behind the task title
+activate TaskList
+TaskList -> DeleteView : request delete task
 activate DeleteView
 DeleteView -> User : send confirmation message
 User -> DeleteView : confirm
 DeleteView -> Database : delete task
 activate Database
-Database --> User : Display()
+Database --> TaskList : redirect
 deactivate Database
 deactivate DeleteView
+TaskList --> User : display
+deactivate TaskList
 @enduml
