@@ -1,12 +1,16 @@
 @startuml
 Actor User
-User -> ShareDeleteView : request revoke share permission
-activate ShareDeleteView
-ShareDeleteView -> User : send confirmation message
-User -> ShareDeleteView : confirm
-ShareDeleteView -> Database : revoke share permission
+User -> ShareList : click cross mark behind share
+activate ShareList
+ShareList -> DeleteView : request revoke share permission
+activate DeleteView
+DeleteView -> User : send confirmation message
+User -> DeleteView : confirm
+DeleteView -> Database : revoke share permission
 activate Database
-Database --> User : Display()
+Database --> ShareList : redirect
 deactivate Database
-deactivate ShareDeleteView
+deactivate DeleteView
+ShareList --> User : display
+deactivate ShareList
 @enduml
