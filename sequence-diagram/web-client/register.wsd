@@ -5,6 +5,7 @@ activate LoginView
 LoginView -> RegisterPage : Open register form
 deactivate LoginView
 activate RegisterPage
+RegisterPage --> User : diaplay
 User -> RegisterPage : Enter username, firstname, lastname, e-mail,\n password and password confirmation
 RegisterPage -> Database : check username
 activate Database
