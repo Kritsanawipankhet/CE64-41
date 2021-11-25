@@ -4,6 +4,7 @@ User -> TaskList : Click Task's title
 activate TaskList
 TaskList -> TaskUpdate : open TaskUpdate's view
 activate TaskUpdate
+TaskUpdate --> User : display
 User -> TaskUpdate : edit Task's title, \ndescription and \ncomplete status
 TaskUpdate -> Database : save the change
 activate Database
