@@ -4,7 +4,7 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 var iamJson = require("../iam.json");
 
 // const privateKey =
-//   "229a4046d207931f8d73e0d3b0c534649efc8aa2e5dc39399e41b88574e20861";
+//   "0xBDFDf401ECb66cfd19b034B9D9cD3160c312Ed0f";
 // // fun ignore vibrant artwork cushion must cat monitor crouch enact illegal economy
 // const provider = new HDWalletProvider(
 //   privateKey,

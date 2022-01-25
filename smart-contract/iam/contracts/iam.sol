@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 contract iam {
-    address owner_address = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+    address owner_address = 0x7002aFf9b93bf19A9EE547254d185aaAE1D26642;
 
     modifier owner() {
         require(msg.sender == owner_address, "No Authorization !");
@@ -10,12 +10,13 @@ contract iam {
     }
 
     struct Users {
-        string email; // hash sha256
+        string username; // hash sha1
+        string email;
         string password;
         string firstname;
-        string surname;
+        string lastname;
         string birthdate;
-        string gender;
+        string phonenumber;
         uint256 timestamp;
     }
 
@@ -64,38 +65,42 @@ contract iam {
     }
 
     function createUser(
+        string memory _username,
         string memory _email,
         string memory _password,
         string memory _firstname,
-        string memory _surname,
+        string memory _lastname,
         string memory _birthdate,
-        string memory _gender
+        string memory _phonenumber
     ) public owner {
-        require(isUser(_email), "Email is already !");
-        users[_email].email = _email;
-        users[_email].password = _password;
-        users[_email].firstname = _firstname;
-        users[_email].surname = _surname;
-        users[_email].birthdate = _birthdate;
-        users[_email].gender = _gender;
-        users[_email].timestamp = block.timestamp;
+        require(isUser(_username), "Email is already !");
+        users[_username].username = _username;
+        users[_username].email = _email;
+        users[_username].password = _password;
+        users[_username].firstname = _firstname;
+        users[_username].lastname = _lastname;
+        users[_username].birthdate = _birthdate;
+        users[_username].phonenumber = _phonenumber;
+        users[_username].timestamp = block.timestamp;
     }
 
-    function getUser(string memory _email, string memory _password)
+    function getUser(string memory _username, string memory _password)
         public
         view
+        returns (Users memory)
     {
         require(
-            keccak256(abi.encodePacked(users[_email].email)) ==
-                keccak256(abi.encodePacked(_email)) &&
-                keccak256(abi.encodePacked(users[_email].password)) ==
+            keccak256(abi.encodePacked(users[_username].username)) ==
+                keccak256(abi.encodePacked(_username)) &&
+                keccak256(abi.encodePacked(users[_username].password)) ==
                 keccak256(abi.encodePacked(_password)),
             "Email or password is incorrect !"
         );
+        return users[_username];
     }
 
-    function isUser(string memory _email) private view returns (bool) {
-        if (bytes(users[_email].email).length == 0) {
+    function isUser(string memory _username) private view returns (bool) {
+        if (bytes(users[_username].username).length == 0) {
             return true;
         } else {
             return false;
@@ -184,8 +189,5 @@ contract iam {
         public
         view
         returns (string memory)
-    {
-        
-    }
-
+    {}
 }

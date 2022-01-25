@@ -30,36 +30,33 @@ entity "clients"  {
   *client_redirect_uris: string
 }
 
-<> manages
-users }|-- manages
-manages -o{ clients
 
-' entity "authorization"  {
-'   * **id : string <<PK>> **
-'   --
-'   *authorization_code : string <<FK>>
-'   *client_id: string <<FK>>
-'   *email: string <<FK>>
-'   *expires_at: uint256
-'   *timestamp: uint256
-' }
+entity "authorization"  {
+  * **id : string <<PK>> **
+  --
+  *authorization_code : string <<FK>>
+  *client_id: string <<FK>>
+  *email: string <<FK>>
+  *expires_at: uint256
+  *timestamp: uint256
+}
 
-' entity "token"  {
-'   * ** id : string <<PK>> **
-'   --
-'   *access_token : string
-'   *client_id : string <<FK>>
-'   *email : string <<FK>>
-'   *expires_at : uint256
-'   *timestamp : uint256
-' }
+entity "token"  {
+  * ** id : string <<PK>> **
+  --
+  *access_token : string
+  *client_id : string <<FK>>
+  *email : string <<FK>>
+  *expires_at : uint256
+  *timestamp : uint256
+}
 
 
 
-'"users" }|--o{ "clients"
-'n"users" }|--o{ "authorization"
-'"users" }|--o{ "token"
-'n"clients" }|--o{ "authorization"
-'"clients" }|--o{ "token"
+"users" }|--o{ "clients"
+"users" }|--o{ "authorization"
+"users" }|--o{ "token"
+"clients" }|--o{ "authorization"
+"clients" }|--o{ "token"
 
 @enduml
