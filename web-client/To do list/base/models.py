@@ -16,3 +16,11 @@ class Task(models.Model):
         
 class Share(Task):
     share_target = models.ManyToManyField(User, blank=True)
+    
+class Sharing(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    task_name = models.ForeignKey(Task, on_delete=models.CASCADE, null=True, blank=True)
+    target = models.CharField(max_length=150)
+    
+    def __str__(self):
+        return self.task_name
