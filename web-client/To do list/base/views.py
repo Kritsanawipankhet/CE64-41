@@ -15,7 +15,7 @@ from django.views import View
 from django.shortcuts import redirect
 from django.db import transaction
 
-from .models import Share, Task
+from .models import Share, Sharing, Task
 #from .forms import PositionForm
 
 
@@ -37,7 +37,7 @@ class RegisterPage(FormView):
     def form_valid(self, form):
         user = form.save()
         if user is not None:
-            login(self.request, user)
+            login(self.request, user, backend='django.contrib.auth.backends.ModelBackend')
         return super(RegisterPage, self).form_valid(form)
 
     def get(self, *args, **kwargs):
@@ -48,11 +48,11 @@ class RegisterPage(FormView):
 
 class TaskList(LoginRequiredMixin, ListView):
     model = Share
-    context_object_name = 'tasks','taskss'
+    context_object_name = 'tasks'
+    template_name = 'base/task_list.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tasks'] = context['tasks'].filter(user=self.request.user)
-        #context['tasks'] = context['tasks'].filter(share_target=self.request.user)
         context['count'] = context['tasks'].filter(complete=False).count()
 
         search_input = self.request.GET.get('search-area') or ''
@@ -63,13 +63,30 @@ class TaskList(LoginRequiredMixin, ListView):
         context['search_input'] = search_input
 
         return context
+    
+class ShareList(LoginRequiredMixin, ListView):
+    model = Sharing
+    context_object_name = 'shares'
+    template_name = 'base/sharing_list.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['shares'] = context['shares'].filter(user=self.request.user)
 
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context['shares'] = context['shares'].filter(
+                title__contains=search_input)
+
+        context['search_input'] = search_input
+
+        return context
+    
 class TaskLists(LoginRequiredMixin, ListView):
     model = Share
     context_object_name = 'taskss'
+    template_name = 'base/sharetask_list.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        #context['tasks'] = context['tasks'].filter(user=self.request.user)
         context['taskss'] = context['taskss'].filter(share_target=self.request.user)
         context['count'] = context['taskss'].filter(complete=False).count()
 
@@ -86,18 +103,32 @@ class TaskDetail(LoginRequiredMixin, DetailView):
     model = Share
     context_object_name = 'task'
     template_name = 'base/task.html'
-
+    
+class ShareDetail(LoginRequiredMixin, DetailView):
+    model = Sharing
+    context_object_name = 'share'
+    template_name = 'base/sharing_detail.html'
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Share
-    fields = ['title', 'description', 'complete','share_target']
+    fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
+    template_name = 'base/share_form.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(TaskCreate, self).form_valid(form)
 
+class ShareCreate(LoginRequiredMixin, CreateView):
+    model = Sharing
+    template_name = 'base/sharing_form.html'
+    fields = ['task_name', 'target']
+    success_url = reverse_lazy('shares')
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(ShareCreate, self).form_valid(form)
+    
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Share
     fields = ['title', 'description', 'complete']
@@ -106,6 +137,11 @@ class TaskUpdate(LoginRequiredMixin, UpdateView):
 class ShareUpdate(LoginRequiredMixin, UpdateView):
     model = Share
     fields = ['share_target']
+    success_url = reverse_lazy('tasks')
+    
+class SharingUpdate(LoginRequiredMixin, UpdateView):
+    model = Sharing
+    fields = ['target']
     success_url = reverse_lazy('tasks')
 
 class DeleteView(LoginRequiredMixin, DeleteView):
