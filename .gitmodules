@@ -1,0 +1,3 @@
+[submodule "iamblockchain-smartcontract"]
+	path = iamblockchain-smartcontract
+	url = https://github.com/Kritsanawipankhet/iamblockchain-smartcontract.git
