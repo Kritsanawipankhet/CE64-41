@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import CustomLoginView, TaskList, TaskLists, ShareList, TaskDetail, ShareDetail, TaskCreate, ShareCreate, TaskUpdate, ShareUpdate, SharingUpdate, DeleteView, CustomLoginView, RegisterPage
+from .views import CustomLoginView, TaskList, TaskLists, ShareList, TaskDetail, ShareDetail, TaskCreate, ShareCreate, TaskUpdate, ShareUpdate, SharingUpdate, TaskDeleteView, ShareDeleteView, CustomLoginView, RegisterPage
 
 from django.contrib.auth.views import LogoutView
 
@@ -17,6 +17,7 @@ urlpatterns = [
     path('task-update/<int:pk>/', TaskUpdate.as_view(), name = 'task-update'),
     path('share-update/<int:pk>/', ShareUpdate.as_view(), name = 'share-update'),
     path('sharing-update/<int:pk>/', SharingUpdate.as_view(), name = 'sharing-update'),
-    path('task-delete/<int:pk>/', DeleteView.as_view(), name = 'task-delete'),
+    path('task-delete/<int:pk>/', TaskDeleteView.as_view(), name = 'task-delete'),
+    path('share-delete/<int:pk>/', ShareDeleteView.as_view(), name = 'share-delete'),
     path('accounts/',include('allauth.urls')),
 ]
