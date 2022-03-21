@@ -134,13 +134,17 @@ class ShareCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super(ShareCreate, self).form_valid(form)
     
-class TaskUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = 'base/sharing_form.html'
+    from_class = UpdateForm
+    success_url = reverse_lazy('tasks')
+
+class SuperTaskUpdate(LoginRequiredMixin, UpdateView):
+    model = Task
+    template_name = 'base/task_form.html'
     fields = ('title','description','complete')
     success_url = reverse_lazy('tasks')
-    permission_required = "base.change_task"
-
     
 class SharingUpdate(LoginRequiredMixin, UpdateView):
     model = Sharing
