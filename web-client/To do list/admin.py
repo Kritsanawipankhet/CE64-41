@@ -1,8 +1,11 @@
 from django.contrib import admin
-from .models import Post
-from .models import Task
+from .models import Task, Sharing
+from rules.contrib.admin import ObjectPermissionsModelAdmin
 
 # Register your models here.
 
-admin.site.register(Post)
 admin.site.register(Task)
+admin.site.register(Sharing)
+
+class BookAdmin(ObjectPermissionsModelAdmin):
+    pass
