@@ -26,17 +26,17 @@
             {% if task.complete %}
             <div class="task-title">
                 <div class="task-complete-icon"></div>
-                <i><s><a href="{% url 'task-update' task.id %}">{{task}}</a></s><p> created by {{task.user}}</p></i>
+                <i><s><a href="{% url 'super-task-update' task.id %}">{{task}}</a></s><p> created by {{task.user}}</p></i>
 
             </div>
             {% else %}
             <div class="task-title">
                 <div class="task-incomplete-icon"></div>
-                <i><a href="{% url 'task-update' task.id %}"><span class="underline-on-hover">{{task}}</span></a><p> created by {{task.user}}</p></i>
+                <i><a href="{% url 'super-task-update' task.id %}"><span class="underline-on-hover">{{task}}</span></a><p> created by {{task.user}}</p></i>
             </div>
             {% endif %}
             <!--<a class="'share-update' task.id" href="{% url 'share-update' task.id %}">share to</a>-->
-            <a class="share-create" href="{% url 'share-create'%}">share</a>
+            <!--<a class="share-create" href="{% url 'share-create'%}">share</a>-->
             <a class="delete-link" href="{% url 'task-delete' task.id %}">&#215;</a>
         </div>
         {% empty %}

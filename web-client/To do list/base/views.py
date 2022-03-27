@@ -8,16 +8,16 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from .forms import SignUpForm
+from .forms import SignUpForm,SharingForm, UpdateForm
 
 # Imports for Reordering Feature
 from django.views import View
 from django.shortcuts import redirect
 from django.db import transaction
-
+from django.db.models import Q
 from .models import Share, Sharing, Task
 #from .forms import PositionForm
-
+from rules.contrib.views import LoginRequiredMixin, PermissionRequiredMixin, objectgetter, permission_required
 
 class CustomLoginView(LoginView):
     template_name = 'base/login.html'
@@ -26,8 +26,7 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('tasks')
-
-
+    
 class RegisterPage(FormView):
     template_name = 'base/register.html'
     form_class = SignUpForm
@@ -47,7 +46,7 @@ class RegisterPage(FormView):
 
 
 class TaskList(LoginRequiredMixin, ListView):
-    model = Share
+    model = Task
     context_object_name = 'tasks'
     template_name = 'base/task_list.html'
     def get_context_data(self, **kwargs):
@@ -69,7 +68,7 @@ class ShareList(LoginRequiredMixin, ListView):
     context_object_name = 'shares'
     template_name = 'base/sharing_list.html'
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super(ShareList,self).get_context_data(**kwargs)
         context['shares'] = context['shares'].filter(user=self.request.user)
 
         search_input = self.request.GET.get('search-area') or ''
@@ -80,15 +79,16 @@ class ShareList(LoginRequiredMixin, ListView):
         context['search_input'] = search_input
 
         return context
-    
+
 class TaskLists(LoginRequiredMixin, ListView):
-    model = Share
+    model = Sharing
     context_object_name = 'taskss'
     template_name = 'base/sharetask_list.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['taskss'] = context['taskss'].filter(share_target=self.request.user)
+        context['taskss'] = Task.objects.filter(sharing__target=self.request.user)
         context['count'] = context['taskss'].filter(complete=False).count()
+
 
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
@@ -98,22 +98,22 @@ class TaskLists(LoginRequiredMixin, ListView):
         context['search_input'] = search_input
 
         return context
-
+    
 class TaskDetail(LoginRequiredMixin, DetailView):
-    model = Share
+    model = Task
     context_object_name = 'task'
     template_name = 'base/task.html'
     
 class ShareDetail(LoginRequiredMixin, DetailView):
     model = Sharing
-    context_object_name = 'share'
+    context_object_name = 'shared'
     template_name = 'base/sharing_detail.html'
 
 class TaskCreate(LoginRequiredMixin, CreateView):
-    model = Share
+    model = Task
     fields = ['title', 'description', 'complete']
     success_url = reverse_lazy('tasks')
-    template_name = 'base/share_form.html'
+    template_name = 'base/task_form.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -122,32 +122,54 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 class ShareCreate(LoginRequiredMixin, CreateView):
     model = Sharing
     template_name = 'base/sharing_form.html'
-    fields = ['task_name', 'target']
+    form_class = SharingForm
     success_url = reverse_lazy('shares')
-
+    
+    def get_form_kwargs(self):
+        kwargs = super(ShareCreate, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+    
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(ShareCreate, self).form_valid(form)
     
 class TaskUpdate(LoginRequiredMixin, UpdateView):
-    model = Share
-    fields = ['title', 'description', 'complete']
+    model = Task
+    template_name = 'base/sharing_form.html'
+    from_class = UpdateForm
     success_url = reverse_lazy('tasks')
 
-class ShareUpdate(LoginRequiredMixin, UpdateView):
-    model = Share
-    fields = ['share_target']
+class SuperTaskUpdate(LoginRequiredMixin, UpdateView):
+    model = Task
+    template_name = 'base/task_form.html'
+    fields = ('title','description','complete')
     success_url = reverse_lazy('tasks')
     
 class SharingUpdate(LoginRequiredMixin, UpdateView):
     model = Sharing
-    fields = ['target']
-    success_url = reverse_lazy('tasks')
+    form_class = SharingForm
+    success_url = reverse_lazy('shares')
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
-class DeleteView(LoginRequiredMixin, DeleteView):
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Share
+    template_name = 'base/task_confirm_delete.html'
     context_object_name = 'task'
     success_url = reverse_lazy('tasks')
+    def get_queryset(self):
+        owner = self.request.user
+        return self.model.objects.filter(user=owner)
+
+class ShareDeleteView(LoginRequiredMixin, DeleteView):
+    model = Sharing
+    template_name = 'base/sharing_confirm_delete.html'
+    context_object_name = 'share'
+    success_url = reverse_lazy('shares')
     def get_queryset(self):
         owner = self.request.user
         return self.model.objects.filter(user=owner)
