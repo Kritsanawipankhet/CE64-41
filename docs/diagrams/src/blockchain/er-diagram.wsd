@@ -1,0 +1,66 @@
+@startuml
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+
+
+' entity "users"  {
+'     * **email : string  <<PK>>**
+'     --
+'     *password : string
+'     *firstname: string
+'     *lastname: string
+'     *birthdate: string
+'     *phone: string
+' }
+
+
+entity "clients"  {
+  * **client_id : string <<PK>> **
+  --
+  *client_secret : string
+  *client_name: string
+  client_logo: string
+  client_description: string
+  *client_homepage: string
+  *client_redirect_uris: string
+  *client_owner: address
+  *update_date: int256
+  *create_date: int256
+}
+
+
+entity "authorization"  {
+  * **authorization_id : string <<PK>> **
+  --
+  *authorization_code : string <<FK>>
+  *client_id: string <<FK>>
+  *user: address <<FK>>
+  *expires_at: uint256
+  *create_date: uint256
+}
+
+entity "token"  {
+  * ** token_id : string <<PK>> **
+  --
+  *access_token : string
+  *access_token_expires_at : uint256
+  *refesh_token : string
+  *refesh_token_expires_at : uint256
+  *client_id : string <<FK>>
+  *user : address <<FK>>
+  *create_date : uint256
+}
+
+
+
+' "users" }|--o{ "clients"
+' "users" }|--o{ "authorization"
+' "users" }|--o{ "token"
+"clients" }|--o{ "authorization"
+"clients" }|--o{ "token"
+
+@enduml

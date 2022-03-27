@@ -1,0 +1,45 @@
+@startuml authorizationGrant
+title **Authorization Grant** Seqeunce Diagram
+hide footbox
+actor User
+autonumber "<b>(0)"
+"User" -> "Authentication Server" ++: Authentication request \nGET /oauth/authorize?
+"Authentication Server" --> "Blockchain" ++: Client credentials request\n[response_type,client_id,redirect_uri,scope]
+"Blockchain" --> "Authentication Server" --: Client credentials response
+alt Invalid client credentials (false)
+    autonumber stop
+    "Authentication Server" --> "User": Authentication denied \n /Error Page [400] response
+else Valid client credentials (true)
+    autonumber resume
+    "Authentication Server" --> "User" --: /Grant Page [200] response
+    note right: Support wallet : Metamask , CoinBase , WalletConnect \nSupport chain Id: 3
+    "User" --> "Crypto Wallet" ++: User connect wallet request
+    "Crypto Wallet" --> "Authentication Server" --++:  Wallet credentials response
+    "Authentication Server" --> "Authentication Server" : Wallet verification and chain Id
+    alt Invalid wallet credential (false)
+        autonumber stop
+        "Authentication Server" --> "User" : Authentication denied
+    else  Valid wallet credential (true) 
+        autonumber resume
+        "Authentication Server" --> "User" --: User wallet connected response
+        "User" --> "Authentication Server" ++: Authorization request
+        "Authentication Server" --> "Authentication Server" : Generate authorization code grant and encrypt
+        "Authentication Server" --> "Crypto Wallet" --++: Create authorize transaction signature
+        "Crypto Wallet" --> "User" --:  Response transaction signature and wait for user confirmation
+        alt  User denied transaction signature (false)
+            autonumber stop
+            "User" --> "Crypto Wallet" ++: User denied transaction signature
+            "Crypto Wallet" --> "Authentication Server" --++: Denied authorize transation signature
+            "Authentication Server" --> "User" --: Authorization denied
+        else User confirmed transaction signature (true)
+            autonumber resume
+            "User" --> "Crypto Wallet" ++: User confirmed transaction signature
+            "Crypto Wallet" --> "Authentication Server" --++: Confirmed authorize transaction signature
+            "Authentication Server" --> "Blockchain" ++: Send authorization credentials encrypted
+            "Blockchain" --> "Authentication Server" --: Successful transaction response
+            "Authentication Server" --> "User" --: Authorization code response \nRedirect to uri/callback?code=[authorization_code]
+        end
+       
+    end
+end
+@enduml
