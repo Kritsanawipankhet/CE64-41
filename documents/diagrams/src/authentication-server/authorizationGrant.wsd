@@ -3,7 +3,7 @@ title **Authorization Grant** Seqeunce Diagram
 hide footbox
 actor User
 autonumber "<b>(0)"
-"User" -> "Authentication Server" ++: Authentication request \nGET /oauth/authorize?
+"User" -> "Web Server" ++: Authentication request \nGET /oauth/authorize?
 "Authentication Server" --> "Blockchain" ++: Client credentials request\n[response_type,client_id,redirect_uri,scope]
 "Blockchain" --> "Authentication Server" --: Client credentials response
 alt Invalid client credentials (false)

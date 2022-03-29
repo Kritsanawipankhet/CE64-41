@@ -1,0 +1,11 @@
+@startuml createClient
+title **Create Client** Seqeunce Diagram
+hide footbox
+actor User
+autonumber "<b>(0)"
+"User" --> "Web Server": Client manage request\nGET /developer
+alt Unauthorized 
+    "Web Server" --> "Authentication Server":
+else Authorized
+end
+@enduml
