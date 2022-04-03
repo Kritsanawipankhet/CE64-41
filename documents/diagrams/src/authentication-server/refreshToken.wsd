@@ -1,0 +1,6 @@
+@startuml refreshToken
+title **Refresh Token** Seqeunce Diagram
+hide footbox
+actor User
+
+@enduml

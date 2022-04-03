@@ -4,6 +4,7 @@ hide footbox
 actor User
 autonumber "<b>(0)"
 "User" --> "Web Server": Client manage request\nGET /developer
+"Web Server" --> "Authentication Server": 
 alt Unauthorized 
     "Web Server" --> "Authentication Server":
 else Authorized

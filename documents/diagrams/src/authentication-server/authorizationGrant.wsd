@@ -3,15 +3,16 @@ title **Authorization Grant** Seqeunce Diagram
 hide footbox
 actor User
 autonumber "<b>(0)"
-"User" -> "Web Server" ++: Authentication request \nGET /oauth/authorize?
-"Authentication Server" --> "Blockchain" ++: Client credentials request\n[response_type,client_id,redirect_uri,scope]
+"User" -> "Web Client" : User Authentication Request
+"Web Client" -> "Authentication Server" ++:  Redirect to \nGET /oauth/authorize?
+"Authentication Server" --> "Blockchain" ++: Client credentials request\n[response_type,client_id,redirect_uri,scope,state]
 "Blockchain" --> "Authentication Server" --: Client credentials response
 alt Invalid client credentials (false)
     autonumber stop
-    "Authentication Server" --> "User": Authentication denied \n /Error Page [400] response
+    "Authentication Server" --> "User": Authentication denied \n/Error Page [400] response
 else Valid client credentials (true)
     autonumber resume
-    "Authentication Server" --> "User" --: /Grant Page [200] response
+    "Authentication Server" --> "User" --: Authentication From\n/Grant Page [200] response
     note right: Support wallet : Metamask , CoinBase , WalletConnect \nSupport chain Id: 3
     "User" --> "Crypto Wallet" ++: User connect wallet request
     "Crypto Wallet" --> "Authentication Server" --++:  Wallet credentials response
@@ -23,8 +24,8 @@ else Valid client credentials (true)
         autonumber resume
         "Authentication Server" --> "User" --: User wallet connected response
         "User" --> "Authentication Server" ++: Authorization request
-        "Authentication Server" --> "Authentication Server" : Generate authorization code grant and encrypt
-        "Authentication Server" --> "Crypto Wallet" --++: Create authorize transaction signature
+        "Authentication Server" --> "Authentication Server" : Generate grant authorization code and encrypt
+        "Authentication Server" --> "Crypto Wallet" --++: Generate transaction signature , Authorize
         "Crypto Wallet" --> "User" --:  Response transaction signature and wait for user confirmation
         alt  User denied transaction signature (false)
             autonumber stop
@@ -37,8 +38,31 @@ else Valid client credentials (true)
             "Crypto Wallet" --> "Authentication Server" --++: Confirmed authorize transaction signature
             "Authentication Server" --> "Blockchain" ++: Send authorization credentials encrypted
             "Blockchain" --> "Authentication Server" --: Successful transaction response
-            "Authentication Server" --> "User" --: Authorization code response \nRedirect to uri/callback?code=[authorization_code]
-        end
+            "Authentication Server" --> "Web Client" --++: Authorized and authorization code response \nRedirect to uri/callback?code=[authorization_code]&state
+            "Web Client" --> "Authentication Server" --++: Access token request \nPOST /oauth/token\n[client_id,client_secret,grant_type,code,redirect_uri]
+            "Authentication Server" --> "Blockchain" ++: Verify authorization and data accuracy  
+            "Blockchain" --> "Authentication Server" --: Confirmation status response
+            alt Invalid authorization credentials (false)
+                 autonumber stop
+                "Authentication Server" --> "Web Client" : Access token request denied 
+            else Valid authorization credentials (true)
+                autonumber resume
+                "Authentication Server" --> "Authentication Server" : Generate grant access token and encrypt
+                "Authentication Server" --> "Crypto Wallet" --++: Geneate transaction signature , Access token
+                "Crypto Wallet" --> "User" --: Response transaction signature and wait for user confirmation  
+                alt User denied transaction signature (false)
+                    autonumber stop
+                    "User" --> "Crypto Wallet" : User denied transaction signature
+                    "Crypto Wallet" --> "Authentication Server" : Denied access token grant, Transaction signature
+                    "Authentication Server" --> "Web Client" : Access token request denied
+                else User confirmation transaction signature (true)
+                    autonumber resume
+                    "User" --> "Crypto Wallet" ++: User confirmed transaction signature
+                    "Crypto Wallet" --> "Authentication Server" --++: Confirmed transaction signature , Access token
+                    "Authentication Server" --> "Blockchain" --++: Send access token credentials encrypted
+                    "Blockchain" --> "Authentication Server" --++: Successful transaction response
+                    "Authentication Server" --> "Web Client" --: Grant access token,refresh token response
+         end
        
     end
 end

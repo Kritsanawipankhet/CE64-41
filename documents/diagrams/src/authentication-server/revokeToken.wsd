@@ -1,0 +1,6 @@
+@startuml revokeToken
+title **Revoke Token** Seqeunce Diagram
+hide footbox
+actor User
+
+@enduml

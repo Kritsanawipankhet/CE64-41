@@ -1,0 +1,6 @@
+@startuml manageClient
+title **Manage Client** Seqeunce Diagram
+hide footbox
+actor User
+
+@enduml
