@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="650px" preserveAspectRatio="none" style="width:299px;height:650px;background:#FFFFFF;" version="1.1" viewBox="0 0 299 650" width="299px" zoomAndPan="magnify"><defs><filter height="300%" id="fz2aeoedbqdos" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[f5a170bba90fcaaa25a4ec5aa207bea6]
+class clients--><rect codeLine="8" fill="#FEFECE" filter="url(#fz2aeoedbqdos)" height="182.6387" id="clients" style="stroke:#A80036;stroke-width:1.5;" width="162" x="99" y="7"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="36" x="162" y="23.6016">clients</text><line style="stroke:#A80036;stroke-width:1.5;" x1="100" x2="260" y1="31.1328" y2="31.1328"/><ellipse cx="110" cy="42.1328" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="123" x="119" y="45.7676">client_id : string «PK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="100" x2="260" y1="52.0879" y2="52.0879"/><ellipse cx="110" cy="63.0879" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="109" x="119" y="66.7227">client_secret : string</text><ellipse cx="110" cy="76.043" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="102" x="119" y="79.6777">client_name: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="97" x="119" y="92.6328">client_logo: string</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="134" x="119" y="105.5879">client_description: string</text><ellipse cx="110" cy="114.9082" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="129" x="119" y="118.543">client_homepage: string</text><ellipse cx="110" cy="127.8633" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="136" x="119" y="131.498">client_redirect_uri: string</text><ellipse cx="110" cy="140.8184" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="117" x="119" y="144.4531">client_owner: address</text><ellipse cx="110" cy="153.7734" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="95" x="119" y="157.4082">is_active: boolean</text><ellipse cx="110" cy="166.7285" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="107" x="119" y="170.3633">update_date: int256</text><ellipse cx="110" cy="179.6836" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="103" x="119" y="183.3184">create_date: int256</text><!--MD5=[bf8803eca373c95148ce7671a86988f5]
+class authorization--><rect codeLine="24" fill="#FEFECE" filter="url(#fz2aeoedbqdos)" height="143.7734" id="authorization" style="stroke:#A80036;stroke-width:1.5;" width="196" x="7" y="250"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="75" x="67.5" y="266.6016">authorization</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="202" y1="274.1328" y2="274.1328"/><ellipse cx="18" cy="285.1328" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="166" x="27" y="288.7676">authorization_id : string «PK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="8" x2="202" y1="295.0879" y2="295.0879"/><ellipse cx="18" cy="306.0879" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="145" x="27" y="309.7227">authorization_code : string</text><ellipse cx="18" cy="319.043" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="111" x="27" y="322.6777">client_id: string «FK»</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="70" x="27" y="335.6328">scope: string</text><ellipse cx="18" cy="344.9531" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="27" y="348.5879">user: address</text><ellipse cx="18" cy="357.9082" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="27" y="361.543">expires_at: uint256</text><ellipse cx="18" cy="370.8633" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="95" x="27" y="374.498">is_active: boolean</text><ellipse cx="18" cy="383.8184" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="110" x="27" y="387.4531">create_date: uint256</text><!--MD5=[606c0e9a527600b962089599cf14ab26]
+class token--><rect codeLine="36" fill="#FEFECE" filter="url(#fz2aeoedbqdos)" height="182.6387" id="token" style="stroke:#A80036;stroke-width:1.5;" width="211" x="74.5" y="454"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="32" x="164" y="470.6016">token</text><line style="stroke:#A80036;stroke-width:1.5;" x1="75.5" x2="284.5" y1="478.1328" y2="478.1328"/><ellipse cx="85.5" cy="489.1328" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="123" x="98.5" y="492.7676">token_id : string «PK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="75.5" x2="284.5" y1="499.0879" y2="499.0879"/><ellipse cx="85.5" cy="510.0879" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="154" x="94.5" y="513.7227">authorization_id: string «FK»</text><ellipse cx="85.5" cy="523.043" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="94.5" y="526.6777">access_token : string</text><ellipse cx="85.5" cy="535.998" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="185" x="94.5" y="539.6328">access_token_expires_at : uint256</text><ellipse cx="85.5" cy="548.9531" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="111" x="94.5" y="552.5879">refesh_token : string</text><ellipse cx="85.5" cy="561.9082" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="183" x="94.5" y="565.543">refesh_token_expires_at : uint256</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="70" x="94.5" y="578.498">scope: string</text><ellipse cx="85.5" cy="587.8184" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="114" x="94.5" y="591.4531">client_id : string «FK»</text><ellipse cx="85.5" cy="600.7734" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="76" x="94.5" y="604.4082">user : address</text><ellipse cx="85.5" cy="613.7285" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="95" x="94.5" y="617.3633">is_active: boolean</text><ellipse cx="85.5" cy="626.6836" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="94.5" y="630.3184">create_date : uint256</text><!--MD5=[390a8bc9ad790593ff73763634b7239c]
+link clients to authorization--><path codeLine="51" d="M151,198.05 C151,198.05 151,241.74 151,241.74 " fill="none" id="clients-authorization" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="151" x2="157" y1="241.74" y2="249.74"/><line style="stroke:#A80036;stroke-width:1.0;" x1="151" x2="145" y1="241.74" y2="249.74"/><line style="stroke:#A80036;stroke-width:1.0;" x1="151" x2="151" y1="241.74" y2="249.74"/><ellipse cx="151" cy="235.74" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="151" x2="145" y1="198.05" y2="190.05"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="151" x2="157" y1="198.05" y2="190.05"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="151" x2="151" y1="198.05" y2="190.05"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="147" x2="155" y1="200.05" y2="200.05"/><!--MD5=[3f0c2c6b0b4e74ca3e188bfa90fcf1df]
+link clients to token--><path codeLine="52" d="M232,198.04 C232,198.04 232,445.7 232,445.7 " fill="none" id="clients-token" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="232" x2="238" y1="445.7" y2="453.7"/><line style="stroke:#A80036;stroke-width:1.0;" x1="232" x2="226" y1="445.7" y2="453.7"/><line style="stroke:#A80036;stroke-width:1.0;" x1="232" x2="232" y1="445.7" y2="453.7"/><ellipse cx="232" cy="439.7" rx="4" ry="4" style="stroke:#A80036;stroke-width:1.0;fill:none;"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="232" x2="226" y1="198.04" y2="190.04"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="232" x2="238" y1="198.04" y2="190.04"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="232" x2="232" y1="198.04" y2="190.04"/><line style="stroke:#A80036;stroke-width:1.0;fill:none;" x1="228" x2="236" y1="200.04" y2="200.04"/><!--MD5=[55ff92de2d721d99d5515cf7d5029ed7]
+link authorization to token--><path codeLine="53" d="M138.75,401.26 C138.75,401.26 138.75,446.88 138.75,446.88 " fill="none" id="authorization-token" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="142.75" x2="134.75" y1="449.88" y2="449.88"/><line style="stroke:#A80036;stroke-width:1.0;" x1="142.75" x2="134.75" y1="446.88" y2="446.88"/><line style="stroke:#A80036;stroke-width:1.0;" x1="138.75" x2="138.75" y1="445.88" y2="453.88"/><line style="stroke:#A80036;stroke-width:1.0;" x1="134.75" x2="142.75" y1="398.26" y2="398.26"/><line style="stroke:#A80036;stroke-width:1.0;" x1="134.75" x2="142.75" y1="401.26" y2="401.26"/><line style="stroke:#A80036;stroke-width:1.0;" x1="138.75" x2="138.75" y1="402.26" y2="394.26"/><!--MD5=[25662b1405b35be9d125fad53fe2e8f7]
+@startuml EntityDiagramBlockchain
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+
+entity "clients"  {
+  * **client_id : string <<PK>> **
+  - -
+  *client_secret : string
+  *client_name: string
+  client_logo: string
+  client_description: string
+  *client_homepage: string
+  *client_redirect_uri: string
+  *client_owner: address
+  *is_active: boolean
+  *update_date: int256
+  *create_date: int256
+}
+
+
+entity "authorization"  {
+  * **authorization_id : string <<PK>> **
+  - -
+  *authorization_code : string
+  *client_id: string <<FK>>
+  scope: string
+  *user: address
+  *expires_at: uint256
+  *is_active: boolean
+  *create_date: uint256
+}
+
+entity "token"  {
+  * ** token_id : string <<PK>> **
+  - -
+  *authorization_id: string <<FK>>
+  *access_token : string
+  *access_token_expires_at : uint256
+  *refesh_token : string
+  *refesh_token_expires_at : uint256
+  scope: string
+  *client_id : string <<FK>>
+  *user : address
+  *is_active: boolean
+  *create_date : uint256
+}
+
+"clients" }|- -o{ "authorization"
+"clients" }|- -o{ "token"
+"authorization" ||- -|| "token"
+
+@enduml
+
+@startuml EntityDiagramBlockchain
+hide circle
+
+skinparam linetype ortho
+
+
+entity "clients"  {
+  * **client_id : string <<PK>> **
+  - -
+  *client_secret : string
+  *client_name: string
+  client_logo: string
+  client_description: string
+  *client_homepage: string
+  *client_redirect_uri: string
+  *client_owner: address
+  *is_active: boolean
+  *update_date: int256
+  *create_date: int256
+}
+
+
+entity "authorization"  {
+  * **authorization_id : string <<PK>> **
+  - -
+  *authorization_code : string
+  *client_id: string <<FK>>
+  scope: string
+  *user: address
+  *expires_at: uint256
+  *is_active: boolean
+  *create_date: uint256
+}
+
+entity "token"  {
+  * ** token_id : string <<PK>> **
+  - -
+  *authorization_id: string <<FK>>
+  *access_token : string
+  *access_token_expires_at : uint256
+  *refesh_token : string
+  *refesh_token_expires_at : uint256
+  scope: string
+  *client_id : string <<FK>>
+  *user : address
+  *is_active: boolean
+  *create_date : uint256
+}
+
+"clients" }|- -o{ "authorization"
+"clients" }|- -o{ "token"
+"authorization" ||- -|| "token"
+
+@enduml
+
+PlantUML version 1.2022.0(Tue Jan 11 23:16:42 ICT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: TH
+--></g></svg>
