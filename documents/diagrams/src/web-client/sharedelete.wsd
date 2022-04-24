@@ -1,5 +1,8 @@
 @startuml
+title **Delete Share Task** Seqeunce Diagram
+hide footbox
 Actor User
+autonumber "<b>(0)"
 User -> ShareList : click cross mark behind share
 activate ShareList
 ShareList -> DeleteView : request revoke share permission

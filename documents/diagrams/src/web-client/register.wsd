@@ -1,5 +1,8 @@
 @startuml
+title **Register** Seqeunce Diagram
+hide footbox
 Actor User
+autonumber "<b>(0)"
 User -> LoginView : Click register
 activate LoginView
 LoginView -> RegisterPage : Open register form

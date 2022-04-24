@@ -1,5 +1,8 @@
 @startuml
+title **Delete Task** Seqeunce Diagram
+hide footbox
 Actor User
+autonumber "<b>(0)"
 User -> TaskList : click cross mark behind the task title
 activate TaskList
 TaskList -> DeleteView : request delete task

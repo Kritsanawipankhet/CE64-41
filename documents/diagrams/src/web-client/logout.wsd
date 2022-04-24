@@ -1,5 +1,8 @@
 @startuml
+title **Logout** Seqeunce Diagram
+hide footbox
 Actor User
+autonumber "<b>(0)"
 User -> LogoutView : Click Logout
 activate LogoutView
 LogoutView -> LoginView:redirect()

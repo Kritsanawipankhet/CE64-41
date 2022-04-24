@@ -1,5 +1,8 @@
 @startuml
+title **Create Task** Seqeunce Diagram
+hide footbox
 Actor User
+autonumber "<b>(0)"
 User -> TaskCreate : input Title, description and status
 activate TaskCreate
 TaskCreate -> Database : add new Task

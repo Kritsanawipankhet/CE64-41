@@ -1,5 +1,8 @@
 @startuml
+title **Share Task** Seqeunce Diagram
+hide footbox
 Actor User
+autonumber "<b>(0)"
 User -> ShareCreate : Enter target's username
 activate ShareCreate
 ShareCreate -> Database : check username

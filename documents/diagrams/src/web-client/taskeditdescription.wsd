@@ -1,5 +1,8 @@
 @startuml
+title **Edit Description Task** Seqeunce Diagram
+hide footbox
 Actor User
+autonumber "<b>(0)"
 User -> TaskList : Click Task's title
 activate TaskList
 TaskList -> TaskUpdate : open TaskUpdate's view
