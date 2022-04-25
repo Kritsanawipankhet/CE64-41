@@ -1,0 +1,6 @@
+@startuml Web Server Manage Client
+title **Web Server Manage Client** Seqeunce Diagram
+hide footbox
+actor User
+
+@enduml

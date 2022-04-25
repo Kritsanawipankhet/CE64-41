@@ -1,0 +1,5 @@
+@startuml Web Server Verify Access Token
+title **Web Server Verify Access Token** Seqeunce Diagram
+hide footbox
+actor User
+autonumber "<b>(0)"

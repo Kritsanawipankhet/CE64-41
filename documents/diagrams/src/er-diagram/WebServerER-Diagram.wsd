@@ -1,0 +1,61 @@
+@startuml Web Server ER Diagram
+title **Web Server** ER Diagram\n
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "users" {
+  * ** user_id : address <<PK>> **
+} 
+
+entity "clients"  {
+  * **client_id : string <<PK>> **
+  --
+  *client_secret : string
+  *client_name : string
+  *client_logo : string
+  *client_description : string
+  *client_homepage : string
+  *redirect_uri : string
+  *client_owner : address <<FK>>
+  *update_date : uint256
+  *create_date : uint256
+}
+
+
+entity "authorizations"  {
+  * **authorization_id : string <<PK>> **
+  --
+  *authorization_code : string
+  *client_id : string <<FK>>
+  scope : string[]
+  *redirect_uri : string
+  *client_user : address <<FK>>
+  *expires_at : uint256
+  *update_date : uint256
+  *create_date : uint256
+}
+
+entity "tokens"  {
+  * ** token_id : string <<PK>> **
+  --
+  *client_id : string <<FK>>
+  *authorization_id: string <<FK>>
+  *access_token : string
+  *access_token_expires_at : uint256
+  scope : string
+  *client_user : address <<FK>>
+  *is_active : boolean
+  *update_date : uint256
+  *create_date : uint256
+}
+"users" ||--|{ "authorizations"
+"users"  ||--|{ "clients"
+"users" ||--|{ "tokens"
+"clients" ||--|{ "authorizations"
+"clients" ||--|{ "tokens"
+"authorizations" ||--|| "tokens"
+
+@enduml

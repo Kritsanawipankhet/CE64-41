@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="793px" preserveAspectRatio="none" style="width:375px;height:793px;background:#FFFFFF;" version="1.1" viewBox="0 0 375 793" width="375px" zoomAndPan="magnify"><defs><filter height="300%" id="f1o1izzdurwxgz" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" font-weight="bold" lengthAdjust="spacing" textLength="104" x="76.25" y="17.4023">Web Server</text><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="100" x="186.25" y="17.4023">ER Diagram</text><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="0" x="184.25" y="38.6016"/><!--MD5=[8413f8248b2da7966d2de021109ec289]
+class users--><rect codeLine="8" fill="#FEFECE" filter="url(#f1o1izzdurwxgz)" height="53.0879" id="users" style="stroke:#A80036;stroke-width:1.5;" width="160" x="136" y="49.3984"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="31" x="200.5" y="66">users</text><line style="stroke:#A80036;stroke-width:1.5;" x1="137" x2="295" y1="73.5313" y2="73.5313"/><ellipse cx="147" cy="84.5313" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="126" x="160" y="88.166">user_id : address «PK»</text><line style="stroke:#A80036;stroke-width:1.5;" x1="137" x2="295" y1="94.4863" y2="94.4863"/><!--MD5=[f5a170bba90fcaaa25a4ec5aa207bea6]
+class clients--><rect codeLine="12" fill="#FEFECE" filter="url(#f1o1izzdurwxgz)" height="169.6836" id="clients" style="stroke:#A80036;stroke-width:1.5;" width="174" x="129" y="162.3984"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="36" x="198" y="179">clients</text><line style="stroke:#A80036;stroke-width:1.5;" x1="130" x2="302" y1="186.5313" y2="186.5313"/><ellipse cx="140" cy="197.5313" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="123" x="149" y="201.166">client_id : string «PK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="130" x2="302" y1="207.4863" y2="207.4863"/><ellipse cx="140" cy="218.4863" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="109" x="149" y="222.1211">client_secret : string</text><ellipse cx="140" cy="231.4414" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="105" x="149" y="235.0762">client_name : string</text><ellipse cx="140" cy="244.3965" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="100" x="149" y="248.0313">client_logo : string</text><ellipse cx="140" cy="257.3516" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="137" x="149" y="260.9863">client_description : string</text><ellipse cx="140" cy="270.3066" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="132" x="149" y="273.9414">client_homepage : string</text><ellipse cx="140" cy="283.2617" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="149" y="286.8965">redirect_uri : string</text><ellipse cx="140" cy="296.2168" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="148" x="149" y="299.8516">client_owner : address «FK»</text><ellipse cx="140" cy="309.1719" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="117" x="149" y="312.8066">update_date : uint256</text><ellipse cx="140" cy="322.127" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="149" y="325.7617">create_date : uint256</text><!--MD5=[a68c487814626847a7d132a3feb96f9e]
+class authorizations--><rect codeLine="27" fill="#FEFECE" filter="url(#f1o1izzdurwxgz)" height="156.7285" id="authorizations" style="stroke:#A80036;stroke-width:1.5;" width="196" x="7" y="392.3984"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="81" x="64.5" y="409">authorizations</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="202" y1="416.5313" y2="416.5313"/><ellipse cx="18" cy="427.5313" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="166" x="27" y="431.166">authorization_id : string «PK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="8" x2="202" y1="437.4863" y2="437.4863"/><ellipse cx="18" cy="448.4863" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="145" x="27" y="452.1211">authorization_code : string</text><ellipse cx="18" cy="461.4414" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="114" x="27" y="465.0762">client_id : string «FK»</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="81" x="27" y="478.0313">scope : string[]</text><ellipse cx="18" cy="487.3516" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="104" x="27" y="490.9863">redirect_uri : string</text><ellipse cx="18" cy="500.3066" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="139" x="27" y="503.9414">client_user : address «FK»</text><ellipse cx="18" cy="513.2617" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="107" x="27" y="516.8965">expires_at : uint256</text><ellipse cx="18" cy="526.2168" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="117" x="27" y="529.8516">update_date : uint256</text><ellipse cx="18" cy="539.1719" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="27" y="542.8066">create_date : uint256</text><!--MD5=[70e19ed5d80c1905c450722456378e52]
+class tokens--><rect codeLine="40" fill="#FEFECE" filter="url(#f1o1izzdurwxgz)" height="169.6836" id="tokens" style="stroke:#A80036;stroke-width:1.5;" width="211" x="150.5" y="609.3984"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="38" x="237" y="626">tokens</text><line style="stroke:#A80036;stroke-width:1.5;" x1="151.5" x2="360.5" y1="633.5313" y2="633.5313"/><ellipse cx="161.5" cy="644.5313" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="123" x="174.5" y="648.166">token_id : string «PK»</text><line style="stroke:#A80036;stroke-width:1.0;" x1="151.5" x2="360.5" y1="654.4863" y2="654.4863"/><ellipse cx="161.5" cy="665.4863" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="114" x="170.5" y="669.1211">client_id : string «FK»</text><ellipse cx="161.5" cy="678.4414" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="154" x="170.5" y="682.0762">authorization_id: string «FK»</text><ellipse cx="161.5" cy="691.3965" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="170.5" y="695.0313">access_token : string</text><ellipse cx="161.5" cy="704.3516" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="185" x="170.5" y="707.9863">access_token_expires_at : uint256</text><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="73" x="170.5" y="720.9414">scope : string</text><ellipse cx="161.5" cy="730.2617" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="139" x="170.5" y="733.8965">client_user : address «FK»</text><ellipse cx="161.5" cy="743.2168" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="98" x="170.5" y="746.8516">is_active : boolean</text><ellipse cx="161.5" cy="756.1719" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="117" x="170.5" y="759.8066">update_date : uint256</text><ellipse cx="161.5" cy="769.127" fill="#000000" rx="3" ry="3" style="stroke:#000000;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacing" textLength="113" x="170.5" y="772.7617">create_date : uint256</text><!--MD5=[0839ce0b1a0805cb9c0df1021477e85c]
+link users to authorizations--><path codeLine="53" d="M127.94,76.3984 C127.94,76.3984 68,76.3984 68,76.3984 C68,76.3984 68,384.0184 68,384.0184 " fill="none" id="users-authorizations" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="68" x2="74" y1="384.0184" y2="392.0184"/><line style="stroke:#A80036;stroke-width:1.0;" x1="68" x2="62" y1="384.0184" y2="392.0184"/><line style="stroke:#A80036;stroke-width:1.0;" x1="68" x2="68" y1="384.0184" y2="392.0184"/><line style="stroke:#A80036;stroke-width:1.0;" x1="72" x2="64" y1="382.0184" y2="382.0184"/><line style="stroke:#A80036;stroke-width:1.0;" x1="131.94" x2="131.94" y1="72.3984" y2="80.3984"/><line style="stroke:#A80036;stroke-width:1.0;" x1="128.94" x2="128.94" y1="72.3984" y2="80.3984"/><line style="stroke:#A80036;stroke-width:1.0;" x1="127.94" x2="135.94" y1="76.3984" y2="76.3984"/><!--MD5=[f89d875ff28201ec729e60f4c7b5b6c2]
+link users to clients--><path codeLine="54" d="M216,110.6984 C216,110.6984 216,154.1484 216,154.1484 " fill="none" id="users-clients" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="216" x2="222" y1="154.1484" y2="162.1484"/><line style="stroke:#A80036;stroke-width:1.0;" x1="216" x2="210" y1="154.1484" y2="162.1484"/><line style="stroke:#A80036;stroke-width:1.0;" x1="216" x2="216" y1="154.1484" y2="162.1484"/><line style="stroke:#A80036;stroke-width:1.0;" x1="220" x2="212" y1="152.1484" y2="152.1484"/><line style="stroke:#A80036;stroke-width:1.0;" x1="212" x2="220" y1="106.6984" y2="106.6984"/><line style="stroke:#A80036;stroke-width:1.0;" x1="212" x2="220" y1="109.6984" y2="109.6984"/><line style="stroke:#A80036;stroke-width:1.0;" x1="216" x2="216" y1="110.6984" y2="102.6984"/><!--MD5=[fca0714f0042f4581130b69fd56de1f4]
+link users to tokens--><path codeLine="55" d="M304.11,76.3984 C304.11,76.3984 332.25,76.3984 332.25,76.3984 C332.25,76.3984 332.25,601.1184 332.25,601.1184 " fill="none" id="users-tokens" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="332.25" x2="338.25" y1="601.1184" y2="609.1184"/><line style="stroke:#A80036;stroke-width:1.0;" x1="332.25" x2="326.25" y1="601.1184" y2="609.1184"/><line style="stroke:#A80036;stroke-width:1.0;" x1="332.25" x2="332.25" y1="601.1184" y2="609.1184"/><line style="stroke:#A80036;stroke-width:1.0;" x1="336.25" x2="328.25" y1="599.1184" y2="599.1184"/><line style="stroke:#A80036;stroke-width:1.0;" x1="300.1171" x2="300.1029" y1="80.3913" y2="72.3913"/><line style="stroke:#A80036;stroke-width:1.0;" x1="303.1171" x2="303.1028" y1="80.3859" y2="72.3859"/><line style="stroke:#A80036;stroke-width:1.0;" x1="304.11" x2="296.11" y1="76.3842" y2="76.3984"/><!--MD5=[40897864eff4ebe9c95bcc6d287a10c2]
+link clients to authorizations--><path codeLine="56" d="M166,340.5284 C166,340.5284 166,384.2484 166,384.2484 " fill="none" id="clients-authorizations" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="166" x2="172" y1="384.2484" y2="392.2484"/><line style="stroke:#A80036;stroke-width:1.0;" x1="166" x2="160" y1="384.2484" y2="392.2484"/><line style="stroke:#A80036;stroke-width:1.0;" x1="166" x2="166" y1="384.2484" y2="392.2484"/><line style="stroke:#A80036;stroke-width:1.0;" x1="170" x2="162" y1="382.2484" y2="382.2484"/><line style="stroke:#A80036;stroke-width:1.0;" x1="162" x2="170" y1="336.5284" y2="336.5284"/><line style="stroke:#A80036;stroke-width:1.0;" x1="162" x2="170" y1="339.5284" y2="339.5284"/><line style="stroke:#A80036;stroke-width:1.0;" x1="166" x2="166" y1="340.5284" y2="332.5284"/><!--MD5=[cc403d3e4d8a854d79360be970e90419]
+link clients to tokens--><path codeLine="57" d="M253,340.5284 C253,340.5284 253,601.2084 253,601.2084 " fill="none" id="clients-tokens" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="253" x2="259" y1="601.2084" y2="609.2084"/><line style="stroke:#A80036;stroke-width:1.0;" x1="253" x2="247" y1="601.2084" y2="609.2084"/><line style="stroke:#A80036;stroke-width:1.0;" x1="253" x2="253" y1="601.2084" y2="609.2084"/><line style="stroke:#A80036;stroke-width:1.0;" x1="257" x2="249" y1="599.2084" y2="599.2084"/><line style="stroke:#A80036;stroke-width:1.0;" x1="249" x2="257" y1="336.5284" y2="336.5284"/><line style="stroke:#A80036;stroke-width:1.0;" x1="249" x2="257" y1="339.5284" y2="339.5284"/><line style="stroke:#A80036;stroke-width:1.0;" x1="253" x2="253" y1="340.5284" y2="332.5284"/><!--MD5=[d53ca82c8cbea2fe7b3840f5c5e784f7]
+link authorizations to tokens--><path codeLine="58" d="M176.75,556.6984 C176.75,556.6984 176.75,602.0984 176.75,602.0984 " fill="none" id="authorizations-tokens" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="180.75" x2="172.75" y1="605.0984" y2="605.0984"/><line style="stroke:#A80036;stroke-width:1.0;" x1="180.75" x2="172.75" y1="602.0984" y2="602.0984"/><line style="stroke:#A80036;stroke-width:1.0;" x1="176.75" x2="176.75" y1="601.0984" y2="609.0984"/><line style="stroke:#A80036;stroke-width:1.0;" x1="172.75" x2="180.75" y1="553.6984" y2="553.6984"/><line style="stroke:#A80036;stroke-width:1.0;" x1="172.75" x2="180.75" y1="556.6984" y2="556.6984"/><line style="stroke:#A80036;stroke-width:1.0;" x1="176.75" x2="176.75" y1="557.6984" y2="549.6984"/><!--MD5=[ee2c175a9382a7fc3817397467d1a5a1]
+@startuml Web Server ER Diagram
+title **Web Server** ER Diagram\n
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "users" {
+  * ** user_id : address <<PK>> **
+} 
+
+entity "clients"  {
+  * **client_id : string <<PK>> **
+  - -
+  *client_secret : string
+  *client_name : string
+  *client_logo : string
+  *client_description : string
+  *client_homepage : string
+  *redirect_uri : string
+  *client_owner : address <<FK>>
+  *update_date : uint256
+  *create_date : uint256
+}
+
+
+entity "authorizations"  {
+  * **authorization_id : string <<PK>> **
+  - -
+  *authorization_code : string
+  *client_id : string <<FK>>
+  scope : string[]
+  *redirect_uri : string
+  *client_user : address <<FK>>
+  *expires_at : uint256
+  *update_date : uint256
+  *create_date : uint256
+}
+
+entity "tokens"  {
+  * ** token_id : string <<PK>> **
+  - -
+  *client_id : string <<FK>>
+  *authorization_id: string <<FK>>
+  *access_token : string
+  *access_token_expires_at : uint256
+  scope : string
+  *client_user : address <<FK>>
+  *is_active : boolean
+  *update_date : uint256
+  *create_date : uint256
+}
+"users" ||- -|{ "authorizations"
+"users"  ||- -|{ "clients"
+"users" ||- -|{ "tokens"
+"clients" ||- -|{ "authorizations"
+"clients" ||- -|{ "tokens"
+"authorizations" ||- -|| "tokens"
+
+@enduml
+
+@startuml Web Server ER Diagram
+title **Web Server** ER Diagram\n
+hide circle
+
+skinparam linetype ortho
+
+entity "users" {
+  * ** user_id : address <<PK>> **
+} 
+
+entity "clients"  {
+  * **client_id : string <<PK>> **
+  - -
+  *client_secret : string
+  *client_name : string
+  *client_logo : string
+  *client_description : string
+  *client_homepage : string
+  *redirect_uri : string
+  *client_owner : address <<FK>>
+  *update_date : uint256
+  *create_date : uint256
+}
+
+
+entity "authorizations"  {
+  * **authorization_id : string <<PK>> **
+  - -
+  *authorization_code : string
+  *client_id : string <<FK>>
+  scope : string[]
+  *redirect_uri : string
+  *client_user : address <<FK>>
+  *expires_at : uint256
+  *update_date : uint256
+  *create_date : uint256
+}
+
+entity "tokens"  {
+  * ** token_id : string <<PK>> **
+  - -
+  *client_id : string <<FK>>
+  *authorization_id: string <<FK>>
+  *access_token : string
+  *access_token_expires_at : uint256
+  scope : string
+  *client_user : address <<FK>>
+  *is_active : boolean
+  *update_date : uint256
+  *create_date : uint256
+}
+"users" ||- -|{ "authorizations"
+"users"  ||- -|{ "clients"
+"users" ||- -|{ "tokens"
+"clients" ||- -|{ "authorizations"
+"clients" ||- -|{ "tokens"
+"authorizations" ||- -|| "tokens"
+
+@enduml
+
+PlantUML version 1.2022.0(Tue Jan 11 23:16:42 ICT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: TH
+--></g></svg>

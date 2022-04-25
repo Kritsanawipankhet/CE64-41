@@ -1,0 +1,48 @@
+@startuml Web Client ER Diagram
+title **Web Client** ER Diagram\n
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "users" {
+    * ** _id : string <<PK>> **
+    --
+    *email : string
+    *name : string
+    *password : string
+    *emailVerified : boolean
+    *update_date : timestamp
+    *create_date : timestamp
+} 
+
+entity "accounts" {
+    * ** _id : string <<PK>> **
+    --
+    *userId : string <<FK>>
+    *provider : string
+    *type : string
+    *providerAccountId : string
+    *access_token : string
+    *token_type : string
+    *scope : string
+    *update_datetime : timestamp
+    *create_datetime : timestamp
+}
+
+entity "lists" {
+    * ** _id : string <<PK>> **
+    --
+    *userId : string <<FK>>
+    *content : string
+    *complete : boolean
+    *update_datetime : timestamp
+    *create_datetime : timestamp
+}
+
+"users" |o--|{ "accounts"
+"users" ||--|{ "lists"
+
+
+@enduml
