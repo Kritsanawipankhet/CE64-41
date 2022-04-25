@@ -1,0 +1,38 @@
+@startuml Web Client SignIn and SignUp with Service Provider 
+title **Web Client SignIn and SignUp with Service Provider  ** Seqeunce Diagram
+hide footbox
+Actor User
+autonumber "<b>(0)"
+User-> RegisterPage ++: Click Sign in with \nGithub, Google, IAMBLOCKCHAIN
+"RegisterPage" -> "Web Client" --++: Redirect to the selected\nservice provider 
+"Web Client" ->"Authentication Server \nService Provider" --++: Request authentication \nGET /?client_id, scope, response_type, \nredirect_uri, state
+"Authentication Server \nService Provider" --> "User" --: Response authorization page
+"User" -> "Authentication Server \nService Provider" ++: User confirm grant authorization
+"Authentication Server \nService Provider" --> "Web Client" --++:Response authorization code 
+"Web Client" -> "Authentication Server \nService Provider" --++: Request access token
+"Authentication Server \nService Provider" --> "Web Client" --++: Response access token
+"Web Client" -> "Authentication Server \nService Provider" --++: Request user info with access token
+"Authentication Server \nService Provider" --> "Web Client" --++: Respone user info\nemail, address, name
+"Web Client" -> "Database" --++: Query email into the database
+"Database" --> "Web Client" --++: Response userId and user credentials
+"Web Client" -> "Web Client" ++--: Verify that the email is a new account and\nif email is not new account need to\nverify previously bound provider 
+alt Email is not new account and is not previous bound provider
+    "Web Client" --> "RegisterPage"++: Response warning message \n"Can't link to another provider in \nsame email without sign in"
+    "RegisterPage" --> "User"--:  Alert warning message in register form
+else Email is not new account (this mean is sign In)
+    "Web Client" -> "Web Client" ++--: Create user session
+    "Web Client" --> "User": Redirect to Home page root path / 
+else Email is a new account (this mean is sign Up)
+    "Web Client" -> "Database" --++: Insert new user into the database and link account provider
+    "Database" --> "Web Client" --++: Response userId and user info 
+    "Web Client" --> "RegisterPage" --++: Response user info and assign to \nform for update user info
+    "RegisterPage" --> "User" --: Response register form
+    "User" -> "RegisterPage" ++: Enter user credentials missing in form 
+    "RegisterPage" -> "Web Client" --++:  Request update user info.
+    "Web Client" -> "Database" --++: Update user info into the database
+    "Database" --> "Web Client" --++: Response userId
+    "Web Client" -> "Web Client" ++--: Create user session
+    "Web Client" --> "User" --:  Redirect to Home page root path /
+end
+
+@enduml

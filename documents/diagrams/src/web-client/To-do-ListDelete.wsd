@@ -1,0 +1,12 @@
+@startuml Web Client Delete To-do List
+title **Web Client Delete To-do List** Seqeunce Diagram
+hide footbox
+Actor User
+autonumber "<b>(0)"
+User -> "To-do List Page" ++: Delete To-do list selected
+"To-do List Page" -> "Web Client" --++: Request delete to-do list \nDELETE Parameter: listId
+"Web Client" -> "Database" --++: Delete to-do list of listId selected into database
+"Database" --> "Web Client" --++: Response 
+"Web Client" --> "To-do List Page" --++: Update the to-do list on the page
+"To-do List Page" --> "User" --: Response to-do list page
+@enduml

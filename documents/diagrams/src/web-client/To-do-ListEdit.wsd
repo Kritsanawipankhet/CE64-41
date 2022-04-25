@@ -1,0 +1,12 @@
+@startuml Web Client Edit To-do List
+title **Web Client Edit To-do List** Seqeunce Diagram
+hide footbox
+Actor User
+autonumber "<b>(0)"
+User -> "To-do List Page" ++: Edit To-do list selected
+"To-do List Page" -> "Web Client" --++: Request edit to-do list \nPUT Parameter: listId , content
+"Web Client" -> "Database" --++: Update to-do list of listId selected into database
+"Database" --> "Web Client" --++: Response listId and list info
+"Web Client" --> "To-do List Page" --++: Update the to-do list on the page
+"To-do List Page" --> "User" --: Response to-do list page
+@enduml

@@ -1,0 +1,9 @@
+@startuml Web Client Logout
+title **Web Client Logout** Seqeunce Diagram
+hide footbox
+Actor User
+autonumber "<b>(0)"
+User -> "Web Client" ++: Click Logout\nRedirect to /auth/signout
+"Web Client" -> "Web Client" ++--: Delete user session
+"Web Client" --> "User" --: Redirect to Login Page /auth
+@enduml
