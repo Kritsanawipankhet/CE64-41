@@ -1,4 +1,4 @@
 @startuml Web Server Delete client
-title **Web Server Delete client** Seqeunce Diagram
+title **Web Server Delete client** Sequence Diagram
 hide footbox
 actor User

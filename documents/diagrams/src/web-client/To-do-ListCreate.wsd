@@ -1,5 +1,5 @@
 @startuml Web Client Create To-do List
-title **Web Client Create To-do List** Seqeunce Diagram
+title **Web Client Create To-do List** Sequence Diagram
 hide footbox
 Actor User
 autonumber "<b>(0)"

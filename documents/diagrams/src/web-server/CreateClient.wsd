@@ -1,5 +1,5 @@
 @startuml Web Server Create client
-title **Web Server Create client** Seqeunce Diagram
+title **Web Server Create client** Sequence Diagram
 hide footbox
 actor User
 autonumber "<b>(0)"

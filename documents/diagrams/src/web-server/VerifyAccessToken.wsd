@@ -1,5 +1,5 @@
 @startuml Web Server Verify Access Token
-title **Web Server Verify Access Token** Seqeunce Diagram
+title **Web Server Verify Access Token** Sequence Diagram
 hide footbox
 actor User
 autonumber "<b>(0)"

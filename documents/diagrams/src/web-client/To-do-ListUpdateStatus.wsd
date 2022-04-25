@@ -1,5 +1,5 @@
 @startuml Web Client Update Status To-do List
-title **Web Client Update Status To-do List** Seqeunce Diagram
+title **Web Client Update Status To-do List** Sequence Diagram
 hide footbox
 Actor User
 autonumber "<b>(0)"

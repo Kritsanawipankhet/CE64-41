@@ -1,5 +1,5 @@
 @startuml Web Server Manage Client
-title **Web Server Manage Client** Seqeunce Diagram
+title **Web Server Manage Client** Sequence Diagram
 hide footbox
 actor User
 

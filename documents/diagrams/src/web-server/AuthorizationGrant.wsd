@@ -1,5 +1,5 @@
 @startuml Web Server Authorization Grant
-title **Web Server Authorization Grant** Seqeunce Diagram
+title **Web Server Authorization Grant** Sequence Diagram
 hide footbox
 actor User
 autonumber "<b>(0)"

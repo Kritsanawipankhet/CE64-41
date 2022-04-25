@@ -1,5 +1,5 @@
 @startuml Web Server Revoke Token
-title **Web Server Revoke Token** Seqeunce Diagram
+title **Web Server Revoke Token** Sequence Diagram
 hide footbox
 actor User
 autonumber "<b>(0)"

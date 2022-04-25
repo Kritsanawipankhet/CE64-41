@@ -1,5 +1,5 @@
 @startuml Web Client SignIn and SignUp with Service Provider 
-title **Web Client SignIn and SignUp with Service Provider  ** Seqeunce Diagram
+title **Web Client SignIn and SignUp with Service Provider  ** Sequence Diagram
 hide footbox
 Actor User
 autonumber "<b>(0)"

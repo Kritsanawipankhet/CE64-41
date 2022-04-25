@@ -1,5 +1,5 @@
 @startuml Web Client Logout
-title **Web Client Logout** Seqeunce Diagram
+title **Web Client Logout** Sequence Diagram
 hide footbox
 Actor User
 autonumber "<b>(0)"
